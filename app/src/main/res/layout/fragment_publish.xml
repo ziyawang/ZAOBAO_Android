@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="true"
+    android:background="#e8e7e6">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/one"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:background="#CECECE"
+                android:layout_width="60dp"
+                android:layout_height="1px" />
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/publish_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:background="#CECECE"
+                android:layout_width="60dp"
+                android:layout_height="1px" />
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:textColor="#999"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/one"
+            android:id="@+id/two"
+            android:layout_centerHorizontal="true"
+            android:text="@string/publishLeadMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_alignLeft="@+id/one"
+            android:layout_alignRight="@+id/one"
+            android:layout_below="@+id/two"
+            android:background="#CECECE"
+            android:layout_width="wrap_content"
+            android:layout_height="1px" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:drawablePadding="13dp"
+        android:layout_marginLeft="67dp"
+        android:layout_marginBottom="120dp"
+        android:id="@+id/SaleAsset"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal"
+        android:drawableTop="@mipmap/chushou01"
+        android:text="@string/SaleAsset"
+        android:textSize="14sp"
+        android:textColor="#333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:drawablePadding="13dp"
+        android:layout_marginRight="67dp"
+        android:layout_marginBottom="120dp"
+        android:id="@+id/BuyRequired"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center_horizontal"
+        android:drawableTop="@mipmap/qiugou"
+        android:text="@string/BuyRequired"
+        android:textSize="14sp"
+        android:textColor="#333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <!--<RelativeLayout
+        android:clipChildren="true"
+        android:id="@+id/foot"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/SaleAsset"
+            android:layout_marginLeft="67dp"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/SaleAsset_image"
+                android:src="@mipmap/chushou01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@id/SaleAsset_image"
+                android:textSize="14sp"
+                android:textColor="#333"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/SaleAsset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/BuyRequired"
+            android:layout_marginRight="67dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/qiugou"
+                android:id="@+id/BuyRequired_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@id/BuyRequired_image"
+                android:textSize="14sp"
+                android:textColor="#333"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/BuyRequired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>-->
+
+
+
+</RelativeLayout>

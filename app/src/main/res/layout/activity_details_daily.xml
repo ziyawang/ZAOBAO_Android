@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EBEBEB"
+    tools:context="com.ziyawang.ziyadaily.activity.DetailsDailyActivity">
+
+    <include layout="@layout/common_title_pre" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="57dp"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/relative_des"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="28dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.ziyawang.ziyadaily.views.JustifyTextView
+                        android:lineSpacingMultiplier="1.5"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:id="@+id/des"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <!--项目详情区域-->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/relative_pictureDet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_below="@+id/pictureDet"
+                        android:background="#EBEBEB"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="项目详情"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:layout_alignParentLeft="true"
+                            android:textSize="15sp"
+                            android:textColor="#333"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:src="@mipmap/details_logo"
+                            android:layout_marginRight="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_below="@+id/pictureDet"
+                        android:background="#EBEBEB"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+
+                    <ImageView
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:id="@+id/pictureDet"
+                        android:layout_marginTop="1dp"
+                        android:background="#fff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/line"
+                    android:layout_below="@+id/pictureDet"
+                    android:background="#EBEBEB"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <com.ziyawang.ziyadaily.views.BenListView
+                    android:dividerHeight="1px"
+                    android:layout_below="@+id/line"
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </com.ziyawang.ziyadaily.views.BenListView>
+
+                <TextView
+                    android:layout_marginBottom="50dp"
+                    android:visibility="gone"
+                    android:drawablePadding="20dp"
+                    android:paddingTop="50dp"
+                    android:gravity="center_horizontal"
+                    android:drawableTop="@mipmap/kong"
+                    android:id="@+id/info_data_view"
+                    android:textColor="#999"
+                    android:textSize="15sp"
+                    android:text="没有更多评论数据"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:id="@+id/bottom_linear"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <TextView
+            android:textColor="#999"
+            android:textSize="11sp"
+            android:drawablePadding="8dp"
+            android:paddingTop="8dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@mipmap/xqzixun"
+            android:id="@+id/text_01"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="咨询" />
+
+        <TextView
+            android:textColor="#999"
+            android:textSize="11sp"
+            android:drawablePadding="8dp"
+            android:paddingTop="8dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@mipmap/xqliuyan"
+            android:id="@+id/text_02"
+            android:text="留言"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="#999"
+            android:textSize="11sp"
+            android:drawablePadding="8dp"
+            android:paddingTop="8dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/text_03"
+            android:text="收藏"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="#999"
+            android:textSize="11sp"
+            android:drawablePadding="8dp"
+            android:paddingTop="8dp"
+            android:drawableTop="@mipmap/xqfabu"
+            android:gravity="center_horizontal"
+            android:id="@+id/text_04"
+            android:text="转发"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</RelativeLayout>

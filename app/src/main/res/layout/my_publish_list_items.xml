@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:background="#f0f1f5"
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:text="项目详情"
+            android:paddingLeft="16dp"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="#333"
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/time"
+            android:textSize="11sp"
+            android:textColor="#999"
+            android:paddingRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:background="#E5E5E5"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+    <TextView
+        android:lineSpacingMultiplier="1.1"
+        android:paddingTop="14dp"
+        android:paddingLeft="16dp"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:textColor="#555"
+        android:id="@+id/text_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:drawablePadding="5dp"
+        android:drawableLeft="@mipmap/tips"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="#fff"
+        android:id="@+id/text_ben"
+        android:textColor="#999"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+</LinearLayout>

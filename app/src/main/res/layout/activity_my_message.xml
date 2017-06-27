@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ziyawang.ziyadaily.activity.MyMessageActivity">
+
+    <include layout="@layout/common_title_pre" />
+
+    <ListView
+        android:dividerHeight="1px"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <TextView
+        android:visibility="gone"
+        android:drawablePadding="20dp"
+        android:paddingTop="150dp"
+        android:gravity="center_horizontal"
+        android:drawableTop="@mipmap/kong"
+        android:id="@+id/info_data_view"
+        android:textColor="#999"
+        android:textSize="15sp"
+        android:text="没有相关留言信息"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

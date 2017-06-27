@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8e7e6"
+    tools:context="com.ziyawang.ziyadaily.activity.CustomizationDailyActivity">
+
+    <include layout="@layout/common_title_pre" />
+
+    <TextView
+        android:id="@+id/kindlyReminder"
+        android:layout_marginTop="76dp"
+        android:gravity="center_horizontal"
+        android:text="@string/kindlyReminder"
+        android:textColor="#333"
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/kindlyReminderMsg"
+        android:layout_below="@+id/kindlyReminder"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginLeft="28dp"
+        android:text="@string/kindlyReminderMsg"
+        android:gravity="center_horizontal"
+        android:textColor="#333"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="#fff"
+        android:layout_below="@+id/kindlyReminderMsg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingTop="30dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:text="@string/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:textSize="12sp"
+                android:textColor="#999"
+                android:text="@string/channelDes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/one"
+            android:visibility="gone"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#333"
+                android:textSize="16sp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/add_pro"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center"
+                android:id="@+id/pro_asset"
+                android:background="@drawable/table"
+                android:text="资产包"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp" />
+            <TextView
+                android:textColor="#333"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/add_pro"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center"
+                android:id="@+id/pro_rule"
+                android:background="@drawable/table"
+                android:text="法拍资产"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingTop="36dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:text="@string/channel_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:textSize="12sp"
+                android:textColor="#999"
+                android:text="@string/channelDes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/two"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#333"
+                android:textSize="16sp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/add_pro"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center"
+                android:id="@+id/text_land"
+                android:background="@drawable/table"
+                android:text="土地"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp" />
+            <TextView
+                android:textColor="#333"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/add_pro"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center"
+                android:id="@+id/text_building"
+                android:background="@drawable/table"
+                android:text="房产"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp" />
+            <TextView
+                android:textColor="#333"
+                android:textSize="16sp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/add_pro"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center"
+                android:id="@+id/text_car"
+                android:background="@drawable/table"
+                android:text="写字楼"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_marginBottom="14dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="#fdd000"
+        android:textSize="17sp"
+        android:text="@string/submitCustomization"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg333_rad5"
+        android:layout_width="match_parent"
+        android:layout_height="46dp" />
+
+</RelativeLayout>

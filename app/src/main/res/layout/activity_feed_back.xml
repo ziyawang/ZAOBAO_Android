@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EBEBEB"
+    tools:context="com.ziyawang.ziyadaily.activity.FeedBackActivity">
+
+    <include layout="@layout/common_title_pre" />
+
+    <EditText
+        android:id="@+id/des"
+        android:layout_marginTop="60dp"
+        android:textColor="#333"
+        android:textSize="15sp"
+        android:textColorHint="#999"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        android:gravity="left"
+        android:hint="@string/FeedBackDes"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="170dp" />
+
+    <RelativeLayout
+        android:id="@+id/relative_phone"
+        android:layout_below="@+id/des"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/contactPerson"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:text="@string/contactPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/person"
+            android:paddingLeft="15dp"
+            android:hint="@string/PleaseInput"
+            android:textColorHint="#999"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/contactPerson"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/relative_phone"
+        android:background="#fff"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/contactPhone"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:text="@string/contactPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/phone"
+            android:paddingLeft="15dp"
+            android:hint="@string/PleaseInput"
+            android:textColorHint="#999"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/contactPhone"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_marginBottom="14dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="#fdd000"
+        android:textSize="17sp"
+        android:text="@string/submit"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg333_rad5"
+        android:layout_width="match_parent"
+        android:layout_height="46dp" />
+
+</RelativeLayout>

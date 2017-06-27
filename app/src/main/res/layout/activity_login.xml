@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ziyawang.ziyadaily.activity.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/pre"
+            android:layout_width="56dp"
+            android:layout_height="56dp">
+            <ImageView
+                android:layout_marginLeft="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/register_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_marginTop="45dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/login_logo"
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.ziyawang.ziyadaily.views.XEditText
+            android:paddingRight="16dp"
+            android:inputType="phone"
+            android:id="@+id/edit_phoneNumber"
+            android:drawablePadding="15dp"
+            android:textColorHint="#666"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:hint="@string/phoneNumber"
+            android:paddingLeft="16dp"
+            android:drawableLeft="@mipmap/register_number"
+            android:background="@drawable/lineca_rad5"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="38dp"
+            android:layout_below="@id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <com.ziyawang.ziyadaily.views.XEditText
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789."
+            android:paddingRight="16dp"
+            android:inputType="phone"
+            android:id="@+id/edit_pwd"
+            android:drawablePadding="15dp"
+            android:textColorHint="#666"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:hint="@string/pwd"
+            android:paddingLeft="16dp"
+            android:drawableLeft="@mipmap/register_pwd"
+            android:background="@drawable/lineca_rad5"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/edit_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <Button
+            android:id="@+id/login"
+            android:text="@string/login"
+            android:textColor="#333"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_below="@id/edit_pwd"
+            android:background="@drawable/bgfdd000_rad5"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <RelativeLayout
+            android:id="@+id/losePwd"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                android:text="@string/losePwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/toRegister"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/losePwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="#fdd000"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                android:text="@string/toRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

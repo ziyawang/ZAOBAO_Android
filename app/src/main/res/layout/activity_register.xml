@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.ziyawang.ziyadaily.activity.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/pre"
+            android:layout_width="56dp"
+            android:layout_height="56dp">
+            <ImageView
+                android:layout_marginLeft="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/fanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+       <TextView
+           android:textColor="#333"
+           android:textSize="25sp"
+           android:id="@+id/text_title"
+           android:layout_below="@id/pre"
+           android:layout_centerHorizontal="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+
+        <com.ziyawang.ziyadaily.views.XEditText
+            android:paddingRight="16dp"
+            android:inputType="phone"
+            android:id="@+id/edit_phoneNumber"
+            android:drawablePadding="15dp"
+            android:textColorHint="#666"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:hint="@string/inputNumber"
+            android:paddingLeft="16dp"
+            android:drawableLeft="@mipmap/register_number"
+            android:background="@drawable/lineca_rad5"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="58dp"
+            android:layout_below="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <RelativeLayout
+            android:background="#fff"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/edit_phoneNumber"
+            android:id="@+id/relative_get_smsCode"
+            android:layout_width="match_parent"
+            android:layout_height="46dp">
+
+            <TextView
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:textColor="#333"
+                android:textSize="15sp"
+                android:id="@+id/get_smsCode"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/lineca_bgf6_rad5"
+                android:text="@string/getCode"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <com.ziyawang.ziyadaily.views.XEditText
+                android:id="@+id/edit_smsCode"
+                android:maxLength="6"
+                android:paddingRight="16dp"
+                android:layout_marginRight="14dp"
+                android:layout_toLeftOf="@id/get_smsCode"
+                android:inputType="phone"
+                android:drawablePadding="15dp"
+                android:textColorHint="#666"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:hint="@string/inputCode"
+                android:paddingLeft="16dp"
+                android:drawableLeft="@mipmap/register_code"
+                android:background="@drawable/lineca_rad5"
+                android:layout_width="match_parent"
+                android:layout_height="46dp" />
+
+
+
+        </RelativeLayout>
+
+        <com.ziyawang.ziyadaily.views.XEditText
+            android:paddingRight="16dp"
+            android:inputType="phone"
+            android:id="@+id/edit_pwd"
+            android:drawablePadding="15dp"
+            android:textColorHint="#666"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:hint="@string/inputPwd"
+            android:paddingLeft="16dp"
+            android:drawableLeft="@mipmap/register_pwd"
+            android:background="@drawable/lineca_rad5"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/relative_get_smsCode"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <com.ziyawang.ziyadaily.views.XEditText
+            android:paddingRight="16dp"
+            android:inputType="phone"
+            android:id="@+id/edit_pwd_again"
+            android:drawablePadding="15dp"
+            android:textColorHint="#666"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:hint="@string/inputPwdAgain"
+            android:paddingLeft="16dp"
+            android:drawableLeft="@mipmap/register_pwd_two"
+            android:background="@drawable/lineca_rad5"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/edit_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+        <Button
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btn_to"
+            android:textColor="#333"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_below="@id/edit_pwd_again"
+            android:background="@drawable/bgfdd000_rad5"
+            android:layout_width="match_parent"
+            android:layout_height="46dp" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

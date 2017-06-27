@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="16dp"
+        android:src="@mipmap/info_liuyan"
+        android:id="@+id/image"
+        android:layout_width="36dp"
+        android:layout_height="36dp" />
+
+    <ImageView
+        android:id="@+id/right"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:paddingRight="5dp"
+        android:layout_toLeftOf="@+id/right"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:id="@+id/title"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:lineSpacingMultiplier="1.2"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/title"
+        android:paddingRight="5dp"
+        android:layout_toLeftOf="@+id/right"
+        android:textSize="14sp"
+        android:textColor="#333"
+        android:id="@+id/content"
+        android:layout_marginTop="11dp"
+        android:layout_toRightOf="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/image"
+        android:paddingRight="5dp"
+        android:layout_toLeftOf="@+id/right"
+        android:textColor="#999"
+        android:textSize="11sp"
+        android:layout_below="@+id/content"
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

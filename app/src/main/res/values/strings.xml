@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">资芽早报</string>
+
+    <string name="home_home">首页</string>
+    <string name="home_publish">发布</string>
+    <string name="home_collect">收藏</string>
+    <string name="home_me">我的</string>
+
+    <string name="me_infoNotice">消息通知</string>
+    <string name="me_MyPublish">我的发布</string>
+    <string name="me_MyMessage">我的留言</string>
+    <string name="me_FeedBack">意见反馈</string>
+    <string name="me_SysSetting">系统设置</string>
+    <string name="me_AboutUs">关于我们</string>
+    <string name="login_register">注册/登录</string>
+
+    <string name="customizationDaily">定制早报</string>
+    <string name="consult">咨询</string>
+    <string name="message">留言</string>
+    <string name="unCollect">收藏</string>
+    <string name="collect">已收藏</string>
+    <string name="share">转发</string>
+
+    <string name="phoneNumber">账号</string>
+    <string name="pwd">密码</string>
+    <string name="login">立即登录</string>
+    <string name="losePwd">忘记密码?</string>
+    <string name="register">注册</string>
+    <string name="toRegister">注册></string>
+
+    <string name="registerId">注册账号</string>
+    <string name="inputNumber">请输入手机号</string>
+    <string name="inputCode">情输入验证码</string>
+    <string name="getCode">获取验证码</string>
+    <string name="inputPwd">请输入密码</string>
+    <string name="inputPwdAgain">请再次输入密码</string>
+    <string name="findBackPwd">找回密码</string>
+
+    <string name="icon">头像</string>
+    <string name="userName">用户名</string>
+
+    <string name="kindlyReminder">温馨提示</string>
+    <string name="kindlyReminderMsg">资芽网将根据您选择的类型，每天7:30为您推送相关信息请及时打开资芽早报APP查看</string>
+    <string name="custom">不良资产频道</string>
+    <string name="channel_c">大宗资产频道</string>
+    <string name="channelDes">请点击以下图标选择或取消（可多选）</string>
+
+    <string name="submitCustomization">提交定制</string>
+    <string name="submit">提交</string>
+
+    <string name="publishLead">发布指南</string>
+    <string name="publishLeadMsg">请选择您要发布的信息内容\n并根据提示认真填写</string>
+    <string name="SaleAsset">出售资产</string>
+    <string name="BuyRequired">求购需求</string>
+
+    <string name="SaleAssetTitle">注：发布成功后资芽网客服将会在第一时间与您联系</string>
+    <string name="ProjectDes">项目描述...</string>
+    <string name="CompanyName">公司名称：</string>
+    <string name="contactPerson">联系人：</string>
+    <string name="contactPhone">联系电话：</string>
+    <string name="PleaseInput">请输入</string>
+    <string name="ToPublish">确认发布</string>
+    <string name="FeedBackDes">意见描述...</string>
+    <string name="ben">资芽网——专注于不良资产领域综合服务的互联网平台\n【海量不良资产信息】\n资芽网自2016年成立以来，平台已汇聚各类型不良资产金额达4190亿元。用户通过APP端“找信息”搜索框，搜索相关关键词，即可无缝连接PC端大数据搜索引擎，获取所需项目信息。\n【各类不良资产处置服务方】\n目前，资芽网已入驻400多家不良资产投资机构，整合1000余家各类处置服务方，与数十家银行、AMC、金融资产交易所建立合作关系。用户通过APP端“找服务”搜索框，搜索相关关键词，即可无缝连接PC端大数据搜索引擎，获取所需服务方信息，随时约谈业务。\n【资源整合，项目对接】\n资芽网引领行业专家，探索不良资产证券化、债转股等方式，推动处置创新；以线下项目对接会为基础，为AMC、银行精准匹配不良资产投资机构和产业资本；发起“非标资产国际投资联盟”，进一步整合国内外优质资方。\n\n如有任何建议或意见，请联系我们：4008988557\n网站：http://www.ziyawang.com\n微信公众号：ziya-wang
+    </string>
+
+</resources>

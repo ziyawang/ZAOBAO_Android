@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/bg"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/common_title" />
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="91dp">
+        
+        <com.ziyawang.ziyadaily.views.MyIconImageView
+            android:id="@+id/icon"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_width="65dp"
+            android:layout_height="65dp" />
+        <TextView
+            android:id="@+id/userName"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/icon"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/next"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        
+    </RelativeLayout>
+    
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_infoNotice"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/me_info"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_infoNotice"
+        android:background="@color/white"
+        android:layout_marginTop="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_MyPublish"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/me_publish"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_MyPublish"
+        android:background="@color/white"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_MyMessage"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/lwodeliuyan"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_MyMessage"
+        android:background="@color/white"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_FeedBack"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/me_feedback"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_FeedBack"
+        android:background="@color/white"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_SysSetting"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/me_set"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_SysSetting"
+        android:background="@color/white"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_AboutUs"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/me_about"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_AboutUs"
+        android:background="@color/white"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+
+
+</LinearLayout>
