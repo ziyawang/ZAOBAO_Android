@@ -63,17 +63,15 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
     private void goSelect(boolean isFirst) {
         Intent intent;
-        intent = new Intent(StartActivity.this, MainActivity.class);
-        startActivity(intent);
+        if (isFirst) {
+            sp.edit().putBoolean("isFirst", false).commit();
+            intent = new Intent(StartActivity.this, WelcomeActivity.class);
+            startActivity(intent);
+        } else {
+            intent = new Intent(StartActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
         finish();
-//        if (isFirst) {
-//            sp.edit().putBoolean("isFirst", false).commit();
-//            intent = new Intent(StartActivity.this, WelcomeActivity.class);
-//            startActivity(intent);
-//        } else {
-//            intent = new Intent(StartActivity.this, MainActivity.class);
-//            startActivity(intent);
-//        }
     }
 
     @Override
