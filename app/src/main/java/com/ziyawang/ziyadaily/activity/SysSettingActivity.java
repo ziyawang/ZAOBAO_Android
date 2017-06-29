@@ -181,15 +181,15 @@ public class SysSettingActivity extends BenBenActivity implements View.OnClickLi
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        oks.setTitle("资芽");
+        oks.setTitle("资芽早报");
         //应用宝的官网的资芽的位置
         //oks.setTitleUrl("http://android.myapp.com/myapp/detail.htm?apkName=com.ziyawang.ziya");
-        oks.setTitleUrl("http://a.app.qq.com/o/simple.jsp?pkgname=com.ziyawang.ziya");
+        oks.setTitleUrl("http://a.app.qq.com/o/simple.jsp?pkgname=com.ziyawang.ziyadaily");
         oks.setImageUrl("http://images.ziyawang.com/Applogo/logo.png") ;
-        oks.setText("资芽网正式上线啦，小伙伴们赶快加入吧。");
+        oks.setText("资芽早报正式上线啦，小伙伴们赶快加入吧。");
         // url仅在微信（包括好友和朋友圈）中使用
         //oks.setUrl("http://android.myapp.com/myapp/detail.htm?apkName=com.ziyawang.ziya" );
-        oks.setUrl("http://a.app.qq.com/o/simple.jsp?pkgname=com.ziyawang.ziya" );
+        oks.setUrl("http://a.app.qq.com/o/simple.jsp?pkgname=com.ziyawang.ziyadaily" );
         // 启动分享GUI
         oks.show(this);
 

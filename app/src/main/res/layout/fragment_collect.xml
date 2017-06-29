@@ -55,7 +55,7 @@
                     android:id="@+id/ziya_text"
                     android:layout_below="@id/ziya_logo"
                     android:layout_centerHorizontal="true"
-                    android:text="您还未登陆"
+                    android:text="您还未登录"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

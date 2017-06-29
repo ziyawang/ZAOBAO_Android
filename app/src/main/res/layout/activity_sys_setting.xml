@@ -34,7 +34,7 @@
         android:paddingRight="16dp"
         android:drawableRight="@mipmap/next"
         android:gravity="center_vertical"
-        android:text="把资芽推荐给朋友"
+        android:text="把资芽早报推荐给朋友"
         android:id="@+id/set_ziya_share"
         android:layout_width="match_parent"
         android:layout_height="50dp" />

@@ -7,7 +7,10 @@ import java.io.File;
  */
 public class Url {
 
-    private static final String IP = "http://paper.zerdream.com/api/" ;
+    //测试
+    //private static final String IP = "http://paper.zerdream.com/api/" ;
+    //正式
+    private static final String IP = "http://dailyapi.ziyawang.com/api/" ;
 
     public static final String HomeData = IP + "index?token=%s" ;
     public static final String login = IP + "login" ;

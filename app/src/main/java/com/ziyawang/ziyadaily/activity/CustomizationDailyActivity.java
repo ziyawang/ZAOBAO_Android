@@ -82,7 +82,13 @@ public class CustomizationDailyActivity extends BenBenActivity implements View.O
                         one.setVisibility(View.VISIBLE);
                         two.setVisibility(View.VISIBLE);
                         break;
+                    case "400" :
+                        one.setVisibility(View.VISIBLE);
+                        two.setVisibility(View.VISIBLE);
+                        break;
                     default:
+                        one.setVisibility(View.VISIBLE);
+                        two.setVisibility(View.VISIBLE);
                         break;
                 }
             }

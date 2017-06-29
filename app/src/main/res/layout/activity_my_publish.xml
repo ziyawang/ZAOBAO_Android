@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#fff"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -18,11 +17,15 @@
 
     <TextView
         android:visibility="gone"
-        android:gravity="center"
+        android:drawablePadding="20dp"
+        android:paddingTop="150dp"
+        android:gravity="center_horizontal"
+        android:drawableTop="@mipmap/kong"
         android:id="@+id/info_data_view"
-        android:textSize="15dp"
-        android:text="没有更多数据"
+        android:textColor="#999"
+        android:textSize="15sp"
+        android:text="没有相关发布信息"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

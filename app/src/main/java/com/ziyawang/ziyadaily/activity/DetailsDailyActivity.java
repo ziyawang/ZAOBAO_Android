@@ -68,24 +68,36 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
     private String id ;
     private RelativeLayout pre ;
     private TextView common_title ;
-    private JustifyTextView des ;
 
     private TextView text_01 , text_02 , text_03 , text_04 ;
 
     private MessageAdapter adapter ;
-    private BenListView listView ;
-    private ImageView pictureDet ;
-    private LinearLayout relative_pictureDet ;
-    private TextView info_data_view ;
+    private ListView listView ;
+    //private TextView info_data_view ;
     private LinearLayout bottom_linear ;
     private String phoneNumber ;
 
     private String title ;
     private String content ;
     private ScrollView scrollView ;
+    private LinearLayout headLinearLayout ;
 
+    private JustifyTextView des ;
     private RelativeLayout relative_des ;
     private TextView line ;
+    private ImageView pictureDet ;
+    private LinearLayout relative_pictureDet ;
+
+    private JustifyTextView des01 ;
+    private RelativeLayout relative_des01 ;
+    private TextView line01 ;
+    private ImageView pictureDet01 ;
+    private LinearLayout relative_pictureDet01 ;
+
+    private TextView time ;
+    private JustifyTextView text_title ;
+    private TextView time01 ;
+    private JustifyTextView text_title01 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,21 +118,38 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
 
     @Override
     public void initViews() {
+        headLinearLayout = (LinearLayout) LayoutInflater.from(DetailsDailyActivity.this).inflate(R.layout.details_head , null ) ;
+
+        relative_des = (RelativeLayout) headLinearLayout.findViewById(R.id.relative_des ) ;
+        des = (JustifyTextView) headLinearLayout.findViewById(R.id.des ) ;
+        pictureDet = (ImageView) headLinearLayout.findViewById(R.id.pictureDet ) ;
+        relative_pictureDet = (LinearLayout) headLinearLayout.findViewById(R.id.relative_pictureDet ) ;
+        line = (TextView) headLinearLayout.findViewById(R.id.line ) ;
+        time = (TextView) headLinearLayout.findViewById(R.id.time ) ;
+        text_title = (JustifyTextView) headLinearLayout.findViewById(R.id.title ) ;
+
         pre = (RelativeLayout)findViewById(R.id.pre ) ;
         common_title = (TextView)findViewById(R.id.common_title ) ;
-        des = (JustifyTextView) findViewById(R.id.des ) ;
+        relative_des01 = (RelativeLayout) findViewById(R.id.relative_des ) ;
+        des01 = (JustifyTextView) findViewById(R.id.des ) ;
+        pictureDet01 = (ImageView) findViewById(R.id.pictureDet ) ;
+        relative_pictureDet01 = (LinearLayout) findViewById(R.id.relative_pictureDet ) ;
+        line01 = (TextView) findViewById(R.id.line ) ;
         text_01 = (TextView) findViewById(R.id.text_01 ) ;
         text_02 = (TextView) findViewById(R.id.text_02 ) ;
         text_03 = (TextView) findViewById(R.id.text_03 ) ;
         text_04 = (TextView) findViewById(R.id.text_04 ) ;
-        listView = (BenListView) findViewById(R.id.listView ) ;
-        pictureDet = (ImageView) findViewById(R.id.pictureDet ) ;
-        info_data_view = (TextView) findViewById(R.id.info_data_view ) ;
-        relative_pictureDet = (LinearLayout) findViewById(R.id.relative_pictureDet ) ;
+        listView = (ListView) findViewById(R.id.listView ) ;
+        //info_data_view = (TextView) findViewById(R.id.info_data_view ) ;
         bottom_linear = (LinearLayout) findViewById(R.id.bottom_linear ) ;
         scrollView = (ScrollView)findViewById(R.id.scrollView ) ;
-        relative_des = (RelativeLayout) findViewById(R.id.relative_des ) ;
-        line = (TextView) findViewById(R.id.line ) ;
+
+        time01 = (TextView)findViewById(R.id.time ) ;
+        text_title01 = (JustifyTextView)findViewById(R.id.title ) ;
+
+        listView.addHeaderView(headLinearLayout);
+
+
     }
 
     @Override
@@ -235,7 +264,7 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
     }
 
     private void showCommitWindow() {
-        scrollView.smoothScrollTo(0, relative_des.getHeight() + relative_pictureDet.getHeight() + line.getHeight());
+        //scrollView.smoothScrollTo(0, relative_des.getHeight() + relative_pictureDet.getHeight() + line.getHeight());
         // 利用layoutInflater获得View
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popupwindow_comment, null);
@@ -449,9 +478,43 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                                     startActivity(intent);
                                 }
                             });
+
+                            BitmapUtils bitmapUtils2 = new BitmapUtils(DetailsDailyActivity.this);
+                            bitmapUtils2.configDefaultLoadFailedImage(R.mipmap.error_imgs);
+                            bitmapUtils2.display(pictureDet01, Url.FileIP + pictureDet_str );
+                            relative_pictureDet01.setVisibility(View.VISIBLE);
+                            pictureDet01.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailsDailyActivity.this, ImageShowActivity.class);
+                                    intent.putExtra("pic" ,  Url.FileIP + pictureDet_str ) ;
+                                    startActivity(intent);
+                                }
+                            });
+
+
                         }
-                        common_title.setText(title);
+                        String type = data.getJSONObject(0).getString("type");
+                        switch (type){
+                            case "1" :
+                                common_title.setText("资讯");
+                                break;
+                            case "2" :
+                                common_title.setText("找项目");
+                                break;
+                            case "3" :
+                                common_title.setText("资产包");
+                                break;
+                            default:
+                                break;
+                        }
+
                         des.setText(content);
+                        des01.setText(content);
+                        time.setText(data.getJSONObject(0).getString("created_at"));
+                        time01.setText(data.getJSONObject(0).getString("created_at"));
+                        text_title.setText(title);
+                        text_title01.setText(title);
 
                         break;
                     default:
@@ -483,20 +546,23 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                 switch (status_code) {
                     case "400" :
                         listView.setVisibility(View.GONE);
-                        info_data_view.setVisibility(View.VISIBLE);
+                        scrollView.setVisibility(View.VISIBLE);
+                        //listView.setVisibility(View.VISIBLE);
+                        //info_data_view.setVisibility(View.VISIBLE);
                         break;
                     case "200":
                         listView.setVisibility(View.VISIBLE);
-                        info_data_view.setVisibility(View.GONE);
+                        //info_data_view.setVisibility(View.GONE);
                         JSONArray data = object.getJSONArray("data");
                         final List<MessageEntity> list = JSON.parseArray(data.toJSONString(), MessageEntity.class);
                         adapter = new MessageAdapter(DetailsDailyActivity.this , list ) ;
                         listView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                         if (type == 1 ){
-                            scrollView.scrollTo(0 , 0 );
+                            //scrollView.scrollTo(0 , 0 );
                         }else {
-                            scrollView.smoothScrollTo(0, relative_des.getHeight() + relative_pictureDet.getHeight() + line.getHeight());
+                            //scrollView.smoothScrollTo(0, relative_des.getHeight() + relative_pictureDet.getHeight() + line.getHeight());
+                            listView.smoothScrollToPosition(1);
                         }
 
                         break;

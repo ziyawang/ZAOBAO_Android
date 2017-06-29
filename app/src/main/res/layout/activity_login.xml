@@ -51,7 +51,7 @@
         <com.ziyawang.ziyadaily.views.XEditText
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789."
             android:paddingRight="16dp"
-            android:inputType="phone"
+            android:inputType="textPassword"
             android:id="@+id/edit_pwd"
             android:drawablePadding="15dp"
             android:textColorHint="#666"

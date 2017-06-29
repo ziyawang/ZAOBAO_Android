@@ -27,6 +27,8 @@ public class PublishFragment extends Fragment implements View.OnClickListener, V
     private TextView saleAsset, buyRequired;
     private Animation mButtonScaleLargeAnimation;
     private Animation mButtonScaleSmallAnimation;
+    private Animation mButtonInAnimation;
+    private Animation mButtonOutAnimation;
 
     @Nullable
     @Override
@@ -41,6 +43,21 @@ public class PublishFragment extends Fragment implements View.OnClickListener, V
         initView(view);
         //注册监听事件
         initListeners();
+
+        saleAsset.startAnimation(mButtonInAnimation);
+        buyRequired.startAnimation(mButtonInAnimation);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            saleAsset.startAnimation(mButtonInAnimation);
+            buyRequired.startAnimation(mButtonInAnimation);
+        }else {
+            saleAsset.startAnimation(mButtonOutAnimation);
+            buyRequired.startAnimation(mButtonOutAnimation);
+        }
     }
 
     private void initListeners() {
@@ -59,6 +76,8 @@ public class PublishFragment extends Fragment implements View.OnClickListener, V
 
         mButtonScaleLargeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.button_scale_to_large);
         mButtonScaleSmallAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.button_scale_to_small);
+        mButtonInAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.button_in);
+        mButtonOutAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.button_out);
     }
 
     @Override

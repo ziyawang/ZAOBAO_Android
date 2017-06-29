@@ -11,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
 import com.ziyawang.ziyadaily.R;
 import com.ziyawang.ziyadaily.activity.LoginActivity;
 import com.ziyawang.ziyadaily.entity.MessageEntity;
 import com.ziyawang.ziyadaily.entity.MyPublishListEntity;
+import com.ziyawang.ziyadaily.tools.BitmapHelp;
 import com.ziyawang.ziyadaily.tools.LoadImageAsyncTask;
 import com.ziyawang.ziyadaily.tools.SDUtil;
 import com.ziyawang.ziyadaily.tools.ToastUtils;
@@ -65,7 +67,7 @@ public class MessageAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.message_list_items, parent, false);
             holder = new ViewHolder();
-            holder.image = (MyIconImageView) convertView.findViewById(R.id.image);
+            holder.image = (ImageView) convertView.findViewById(R.id.image);
             holder.nickName = (TextView) convertView.findViewById(R.id.nickName);
             holder.time = (TextView) convertView.findViewById(R.id.time);
             holder.text_message = (TextView) convertView.findViewById(R.id.text_message);
@@ -76,12 +78,15 @@ public class MessageAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        new LoadImageAsyncTask(new LoadImageAsyncTask.CallBack() {
-            @Override
-            public void setData(final Bitmap bitmap) {
-                holder.image.setImageBitmap(bitmap);
-            }
-        }).execute(Url.FileIP + list.get(position).getPicture());
+//        new LoadImageAsyncTask(new LoadImageAsyncTask.CallBack() {
+//            @Override
+//            public void setData(final Bitmap bitmap) {
+//                holder.image.setImageBitmap(bitmap);
+//            }
+//        }).execute(Url.FileIP + list.get(position).getPicture());
+        BitmapUtils bitmapUtils = BitmapHelp.getBitmapUtils(context) ;
+        bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.RGB_565);
+        bitmapUtils.display(holder.image ,Url.FileIP + list.get(position).getPicture() );
 
         if (!list.get(position).getPhone().matches("^(0|86|17951)?(13[0-9]|15[012356789]|17[3678]|18[0-9]|14[57])[0-9]{8}$")){
             holder.nickName.setText(list.get(position).getPhone());
@@ -104,7 +109,7 @@ public class MessageAdapter extends BaseAdapter{
     }
 
     static class ViewHolder {
-        MyIconImageView image ;
+        ImageView image ;
         TextView nickName ;
         TextView time ;
         TextView text_message ;

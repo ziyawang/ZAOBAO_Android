@@ -10,6 +10,7 @@
     <include layout="@layout/common_title_pre" />
 
     <ScrollView
+        android:visibility="gone"
         android:id="@+id/scrollView"
         android:layout_marginTop="46dp"
         android:layout_marginBottom="57dp"
@@ -24,6 +25,31 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/relative_title"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.ziyawang.ziyadaily.views.JustifyTextView
+                        android:lineSpacingMultiplier="1.2"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_marginLeft="12dp"
+                    android:textSize="12sp"
+                    android:textColor="#999"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <RelativeLayout
                     android:id="@+id/relative_des"
@@ -102,17 +128,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
 
-                <com.ziyawang.ziyadaily.views.BenListView
-                    android:dividerHeight="1px"
-                    android:layout_below="@+id/line"
-                    android:id="@+id/listView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </com.ziyawang.ziyadaily.views.BenListView>
-
                 <TextView
                     android:layout_marginBottom="50dp"
-                    android:visibility="gone"
                     android:drawablePadding="20dp"
                     android:paddingTop="50dp"
                     android:gravity="center_horizontal"
@@ -126,9 +143,18 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
     </ScrollView>
+
+    <ListView
+        android:background="#fff"
+        android:layout_marginBottom="56dp"
+        android:layout_marginTop="46dp"
+        android:dividerHeight="1px"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 
     <LinearLayout
         android:layout_marginTop="10dp"

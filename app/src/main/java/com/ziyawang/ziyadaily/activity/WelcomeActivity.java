@@ -21,7 +21,7 @@ public class WelcomeActivity extends BenBenActivity {
     //适配器
     private WelcomeAdapter adapter;
     //四张引导图
-    private int[] imageIds = new int[]{R.mipmap.ic_launcher ,R.mipmap.ic_launcher ,R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+    private int[] imageIds = new int[]{R.mipmap.pic01 ,R.mipmap.pic02 ,R.mipmap.pic03, R.mipmap.pic04};
     //引导页对应的引导点点
     private ImageView[] icons = new ImageView[4];
 
@@ -56,7 +56,7 @@ public class WelcomeActivity extends BenBenActivity {
         for (int i = 0; i < imageIds.length; i++) {
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(imageIds[i]);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             list.add(imageView);
             icons[i].setEnabled(false);
         }

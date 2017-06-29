@@ -28,6 +28,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.ziyawang.ziyadaily.R;
 import com.ziyawang.ziyadaily.activity.CustomizationDailyActivity;
 import com.ziyawang.ziyadaily.activity.LoginActivity;
+import com.ziyawang.ziyadaily.adapter.CollectAdapter;
 import com.ziyawang.ziyadaily.adapter.HomeAdapter;
 import com.ziyawang.ziyadaily.entity.HomeEntity;
 import com.ziyawang.ziyadaily.tools.GetBenSharedPreferences;
@@ -46,7 +47,7 @@ public class CollectFragment extends Fragment implements View.OnClickListener {
 
     private TextView customizationDaily;
     private ListView listView;
-    private HomeAdapter adapter;
+    private CollectAdapter adapter;
     private TextView info_data_view;
     private RelativeLayout relative_logo;
     private TextView btn_login;
@@ -85,7 +86,7 @@ public class CollectFragment extends Fragment implements View.OnClickListener {
                     Log.e("swipe", "swipe");
                     loadData();
                 }else {
-                    ToastUtils.shortToast(getActivity() , "还未登陆");
+                    ToastUtils.shortToast(getActivity() , "还未登录");
                     if (swipeRefreshLayout.isRefreshing()) {
                         swipeRefreshLayout.setRefreshing(false);
                     }
@@ -108,7 +109,7 @@ public class CollectFragment extends Fragment implements View.OnClickListener {
 
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.common_bg);
-        adapter = new HomeAdapter(getActivity(), ben_data);
+        adapter = new CollectAdapter(getActivity(), ben_data , title_head , listView , info_data_view );
         listView.addHeaderView(headLinearLayout);
         listView.setAdapter(adapter);
 

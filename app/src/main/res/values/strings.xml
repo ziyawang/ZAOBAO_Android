@@ -21,7 +21,7 @@
     <string name="collect">已收藏</string>
     <string name="share">转发</string>
 
-    <string name="phoneNumber">账号</string>
+    <string name="phoneNumber">手机号</string>
     <string name="pwd">密码</string>
     <string name="login">立即登录</string>
     <string name="losePwd">忘记密码?</string>
@@ -30,7 +30,7 @@
 
     <string name="registerId">注册账号</string>
     <string name="inputNumber">请输入手机号</string>
-    <string name="inputCode">情输入验证码</string>
+    <string name="inputCode">请输入验证码</string>
     <string name="getCode">获取验证码</string>
     <string name="inputPwd">请输入密码</string>
     <string name="inputPwdAgain">请再次输入密码</string>
@@ -61,7 +61,7 @@
     <string name="PleaseInput">请输入</string>
     <string name="ToPublish">确认发布</string>
     <string name="FeedBackDes">意见描述...</string>
-    <string name="ben">\t\t\t\t资芽早报——资芽网旗下自媒体，每天早上为您发布最新鲜的一手项目资讯。\n\t\t\t\t资芽网——资芽（北京）网络科技有限公司是一家专注于不良资产领域综合服务的互联网平台，主要为AMC、银行、资方及不良资产产业链上下游服务商提供信息撮合和综合服务。\n\t\t\t\t自2016年成立以来，平台已汇聚各类型不良资产上万亿，入驻600多家不良资产投资机构、1000余家各类处置服务方，与数十家银行、AMC、金融资产交易所建立合作关系，通过线上线下相结合的方式为上下游企业提供多样化服务。
+    <string name="ben">\n\t\t\t\t资芽早报——资芽网旗下自媒体，每天早上为您发布最新鲜的一手项目资讯。\n\t\t\t\t资芽网——资芽（北京）网络科技有限公司是一家专注于不良资产领域综合服务的互联网平台，主要为AMC、银行、资方及不良资产产业链上下游服务商提供信息撮合和综合服务。\n\t\t\t\t自2016年成立以来，平台已汇聚各类型不良资产上万亿，入驻600多家不良资产投资机构、1000余家各类处置服务方，与数十家银行、AMC、金融资产交易所建立合作关系，通过线上线下相结合的方式为上下游企业提供多样化服务。
     </string>
 
 </resources>
