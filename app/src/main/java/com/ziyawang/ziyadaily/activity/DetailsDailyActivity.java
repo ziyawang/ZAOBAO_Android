@@ -503,7 +503,7 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                                 common_title.setText("找项目");
                                 break;
                             case "3" :
-                                common_title.setText("资产包");
+                                common_title.setText("出售资产");
                                 break;
                             default:
                                 break;
@@ -511,8 +511,8 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
 
                         des.setText(content);
                         des01.setText(content);
-                        time.setText(data.getJSONObject(0).getString("created_at"));
-                        time01.setText(data.getJSONObject(0).getString("created_at"));
+                        time.setText(data.getJSONObject(0).getString("created_at").substring(0 ,10));
+                        time01.setText(data.getJSONObject(0).getString("created_at").substring(0 ,10));
                         text_title.setText(title);
                         text_title01.setText(title);
 

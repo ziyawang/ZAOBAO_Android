@@ -8,32 +8,34 @@
     android:orientation="vertical"
     tools:context=".activity.AboutActivity">
     <include layout="@layout/common_title_pre" />
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:background="#fff">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none">
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:scaleType="fitXY"
                     android:src="@mipmap/about_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <com.ziyawang.ziyadaily.views.JustifyTextView
+                <LinearLayout
+                    android:background="#fff"
+                    android:padding="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingMultiplier="1.2"
-                    android:text="@string/ben"
-                    android:textColor="#666"
-                    android:textSize="15sp" />
+                    android:layout_height="wrap_content">
+                    <com.ziyawang.ziyadaily.views.JustifyTextView
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.2"
+                        android:text="@string/ben"
+                        android:textColor="#666"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
-    </android.support.v7.widget.CardView>
 </LinearLayout>

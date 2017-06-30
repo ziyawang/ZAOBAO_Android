@@ -12,7 +12,7 @@
         AppSecret="13cb76dfe304287b63f307c3d5c58da3"
         RedirectUrl="http://www.ziyawang.com"
         ShareByAppClient="true"
-        Enable="true" />
+        Enable="false" />
 
     <TencentWeibo
         Id="2" 
