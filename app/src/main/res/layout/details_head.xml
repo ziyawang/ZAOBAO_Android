@@ -100,10 +100,13 @@
     </LinearLayout>
 
     <TextView
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="留言区"
         android:id="@+id/line"
         android:layout_below="@+id/pictureDet"
-        android:background="#EBEBEB"
+        android:background="#f4f4f4"
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="44dp" />
 
 </LinearLayout>

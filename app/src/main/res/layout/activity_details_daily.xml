@@ -122,13 +122,17 @@
                 </LinearLayout>
 
                 <TextView
+                    android:paddingLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:text="留言区"
                     android:id="@+id/line"
                     android:layout_below="@+id/pictureDet"
-                    android:background="#EBEBEB"
+                    android:background="#f4f4f4"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+                    android:layout_height="44dp" />
 
                 <TextView
+                    android:background="#fff"
                     android:layout_marginBottom="50dp"
                     android:drawablePadding="20dp"
                     android:paddingTop="50dp"
@@ -137,12 +141,11 @@
                     android:id="@+id/info_data_view"
                     android:textColor="#999"
                     android:textSize="15sp"
-                    android:text="没有更多留言"
+                    android:text="还没有留言，赶紧抢沙发~"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
