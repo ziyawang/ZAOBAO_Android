@@ -104,7 +104,7 @@
             android:textColorHint="#666"
             android:textSize="16sp"
             android:textColor="#333"
-            android:hint="@string/inputPwd"
+            android:hint="请输入密码（6-14位）"
             android:paddingLeft="16dp"
             android:drawableLeft="@mipmap/register_pwd"
             android:background="@drawable/lineca_rad5"

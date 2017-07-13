@@ -20,12 +20,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="match_parent">
                 <RelativeLayout
                     android:id="@+id/relative_title"
                     android:paddingTop="20dp"
@@ -52,6 +50,7 @@
                     android:layout_height="wrap_content" />
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/relative_des"
                     android:paddingTop="15dp"
                     android:paddingBottom="28dp"
@@ -67,6 +66,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
+
+                <WebView
+                    android:layout_marginRight="13dp"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="vertical"
+                    android:id="@+id/detContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <!--项目详情区域-->
                 <LinearLayout
@@ -121,6 +129,7 @@
                     </ImageView>
                 </LinearLayout>
 
+
                 <TextView
                     android:paddingLeft="15dp"
                     android:gravity="center_vertical"
@@ -134,10 +143,8 @@
                 <TextView
                     android:background="#fff"
                     android:layout_marginBottom="50dp"
-                    android:drawablePadding="20dp"
-                    android:paddingTop="50dp"
+                    android:paddingTop="150dp"
                     android:gravity="center_horizontal"
-                    android:drawableTop="@mipmap/kong"
                     android:id="@+id/info_data_view"
                     android:textColor="#999"
                     android:textSize="15sp"

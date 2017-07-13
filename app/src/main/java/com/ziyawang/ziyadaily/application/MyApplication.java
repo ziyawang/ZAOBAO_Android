@@ -13,6 +13,8 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by 牛海丰 on 2016/7/19.
@@ -67,6 +69,8 @@ public class MyApplication extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
 

@@ -99,7 +99,7 @@ public class RegisterActivity extends BenBenActivity implements View.OnClickList
             action = "register" ;
         }else if ("2".equals(type)){
             text_title.setText(R.string.findBackPwd);
-            btn_to.setText(R.string.findBackPwd);
+            btn_to.setText("登录");
             action = "login" ;
         }else {
             text_title.setText(null);

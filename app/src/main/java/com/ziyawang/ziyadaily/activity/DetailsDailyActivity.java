@@ -24,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -94,10 +96,13 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
     private ImageView pictureDet01 ;
     private LinearLayout relative_pictureDet01 ;
 
+    private WebView detContent01 ,detContent ;
+
     private TextView time ;
     private JustifyTextView text_title ;
     private TextView time01 ;
     private JustifyTextView text_title01 ;
+    private String detContent_string ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +126,8 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         headLinearLayout = (LinearLayout) LayoutInflater.from(DetailsDailyActivity.this).inflate(R.layout.details_head , null ) ;
 
         relative_des = (RelativeLayout) headLinearLayout.findViewById(R.id.relative_des ) ;
+        detContent01 = (WebView) headLinearLayout.findViewById(R.id.detContent01 ) ;
+        detContent = (WebView) findViewById(R.id.detContent ) ;
         des = (JustifyTextView) headLinearLayout.findViewById(R.id.des ) ;
         pictureDet = (ImageView) headLinearLayout.findViewById(R.id.pictureDet ) ;
         relative_pictureDet = (LinearLayout) headLinearLayout.findViewById(R.id.relative_pictureDet ) ;
@@ -448,6 +455,7 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                         JSONArray data = object.getJSONArray("data");
                         title = data.getJSONObject(0).getString("title");
                         content = data.getJSONObject(0).getString("content");
+                        detContent_string = data.getJSONObject(0).getString("detContent");
                         String status = data.getJSONObject(0).getString("status");
                         phoneNumber = data.getJSONObject(0).getString("phoneNumber") ;
                         if ("1".equals(status)){
@@ -515,6 +523,19 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                         time01.setText(data.getJSONObject(0).getString("created_at").substring(0 ,10));
                         text_title.setText(title);
                         text_title01.setText(title);
+
+                        String html = "<head><style>body{max-width:94%important;margin:0 auto;overflow:hidden!important;}img{max-width:320px !important;height:auto!important;margin:0 auto;width:100%!important;display:block;}</style></head>" + "<body>" + detContent_string + "</body>";
+                        WebSettings ws = detContent.getSettings();
+                        ws.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+                        detContent.setVerticalScrollBarEnabled(false);
+                        detContent.loadDataWithBaseURL(null, html, "text/html", "unicode", null);
+
+                        WebSettings ws01 = detContent01.getSettings();
+                        ws01.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+                        detContent01.setVerticalScrollBarEnabled(false);
+                        detContent01.loadDataWithBaseURL(null, html, "text/html", "unicode", null);
+
+
 
                         break;
                     default:

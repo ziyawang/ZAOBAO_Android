@@ -117,7 +117,7 @@ public class CollectAdapter extends BaseAdapter {
                 break;
         }
         holder.text_type.setText(list.get(position).getTitle());
-        holder.text_time.setText(list.get(position).getUpdated_at().substring(0 ,10));
+        holder.text_time.setText(list.get(position).getCreated_at().substring(0 ,10));
         holder.des.setText(list.get(position).getContent());
         //final GoodView goodView = new GoodView(context);
         switch (list.get(position).getStatus()){

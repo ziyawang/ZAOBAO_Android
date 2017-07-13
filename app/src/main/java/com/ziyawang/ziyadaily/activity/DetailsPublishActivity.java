@@ -24,6 +24,7 @@ import com.ziyawang.ziyadaily.tools.GetBenSharedPreferences;
 import com.ziyawang.ziyadaily.tools.ToastUtils;
 import com.ziyawang.ziyadaily.tools.Url;
 import com.ziyawang.ziyadaily.views.MyProgressDialog;
+import com.ziyawang.ziyadaily.views.XEditText;
 
 public class DetailsPublishActivity extends BenBenActivity implements View.OnClickListener{
 
@@ -31,7 +32,8 @@ public class DetailsPublishActivity extends BenBenActivity implements View.OnCli
     private RelativeLayout pre ;
     private TextView common_title ;
 
-    private EditText des , companyName , person , phone ;
+    private EditText des , companyName , person ;
+    private XEditText phone ;
     private Button submit ;
 
     private MyProgressDialog dialog ;
@@ -53,7 +55,9 @@ public class DetailsPublishActivity extends BenBenActivity implements View.OnCli
         des = (EditText) findViewById(R.id.des ) ;
         companyName = (EditText) findViewById(R.id.companyName ) ;
         person = (EditText) findViewById(R.id.person ) ;
-        phone = (EditText) findViewById(R.id.phone ) ;
+        phone = (XEditText) findViewById(R.id.phone ) ;
+        phone.setSeparator(" ");
+        phone.setPattern(new int[]{3, 4, 4});
 
         submit = (Button) findViewById(R.id.submit ) ;
     }
@@ -96,10 +100,10 @@ public class DetailsPublishActivity extends BenBenActivity implements View.OnCli
             ToastUtils.shortToast(DetailsPublishActivity.this , "请输入内容");
             return false ;
         }
-        if (TextUtils.isEmpty(companyName.getText().toString().trim())){
-            ToastUtils.shortToast(DetailsPublishActivity.this , "请输入公司名");
-            return false ;
-        }
+//        if (TextUtils.isEmpty(companyName.getText().toString().trim())){
+//            ToastUtils.shortToast(DetailsPublishActivity.this , "请输入公司名");
+//            return false ;
+//        }
         if (TextUtils.isEmpty(person.getText().toString().trim())){
             ToastUtils.shortToast(DetailsPublishActivity.this , "请输入联系人");
             return false ;
@@ -108,7 +112,7 @@ public class DetailsPublishActivity extends BenBenActivity implements View.OnCli
             ToastUtils.shortToast(DetailsPublishActivity.this , "请输入电话");
             return false ;
         }
-        if (!phone.getText().toString().trim().matches("^(0|86|17951)?(13[0-9]|15[012356789]|17[3678]|18[0-9]|14[57])[0-9]{8}$")){
+        if (!phone.getText().toString().replace(" ", "").trim().matches("^(0|86|17951)?(13[0-9]|15[012356789]|17[3678]|18[0-9]|14[57])[0-9]{8}$")){
             ToastUtils.longToast(DetailsPublishActivity.this , "请输入正确的手机号码");
             return false ;
         }
@@ -123,7 +127,7 @@ public class DetailsPublishActivity extends BenBenActivity implements View.OnCli
         params.addBodyParameter("describe" , des.getText().toString().trim());
         params.addBodyParameter("company" , companyName.getText().toString().trim());
         params.addBodyParameter("connecter" , person.getText().toString().trim());
-        params.addBodyParameter("phone" , phone.getText().toString().trim());
+        params.addBodyParameter("phone" , phone.getText().toString().replace(" ", "").trim());
         params.addBodyParameter("type" , type);
         String urls = String.format(Url.publish, GetBenSharedPreferences.getTicket(DetailsPublishActivity.this ) ) ;
         httpUtils.send(HttpRequest.HttpMethod.POST, urls , params, new RequestCallBack<String>() {
