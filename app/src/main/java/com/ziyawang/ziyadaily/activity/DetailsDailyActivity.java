@@ -5,28 +5,26 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ScrollingView;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -45,25 +43,24 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.wx.goodview.GoodView;
 import com.ziyawang.ziyadaily.R;
 import com.ziyawang.ziyadaily.adapter.MessageAdapter;
 import com.ziyawang.ziyadaily.entity.MessageEntity;
 import com.ziyawang.ziyadaily.tools.GetBenSharedPreferences;
 import com.ziyawang.ziyadaily.tools.ToastUtils;
 import com.ziyawang.ziyadaily.tools.Url;
-import com.ziyawang.ziyadaily.views.BenListView;
 import com.ziyawang.ziyadaily.views.CustomDialog;
 import com.ziyawang.ziyadaily.views.JustifyTextView;
 
 import org.json.JSONException;
 
+import java.io.File;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+
+import static android.R.id.list;
 
 public class DetailsDailyActivity extends BenBenActivity implements View.OnClickListener {
 
@@ -71,12 +68,13 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
     private RelativeLayout pre ;
     private TextView common_title ;
 
-    private TextView text_01 , text_02 , text_03 , text_04 ;
+    //private TextView text_01 , text_02 , text_03 , text_04 ;
+    private ImageView image_collect , image_share ;
 
     private MessageAdapter adapter ;
     private ListView listView ;
     //private TextView info_data_view ;
-    private LinearLayout bottom_linear ;
+    //private LinearLayout bottom_linear ;
     private String phoneNumber ;
 
     private String title ;
@@ -104,6 +102,21 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
     private JustifyTextView text_title01 ;
     private String detContent_string ;
 
+    private EditText edit_des01 , edit_des02 ;
+    private TextView text_send01 , text_send02 ;
+
+    private String home_type ;
+
+    private LinearLayout linear_bottom ;
+    private RelativeLayout relative_call , relative_download ;
+    private TextView text_call , text_download ;
+
+    private String loadPrice ;
+    private String price ;
+    private String downLoadUrl ;
+
+    private String path ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +136,12 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
 
     @Override
     public void initViews() {
+        linear_bottom = (LinearLayout)findViewById(R.id.linear_bottom ) ;
+        relative_call = (RelativeLayout) findViewById(R.id.relative_call ) ;
+        relative_download = (RelativeLayout) findViewById(R.id.relative_download ) ;
+        text_call = (TextView) findViewById(R.id.text_call ) ;
+        text_download = (TextView) findViewById(R.id.text_download ) ;
+
         headLinearLayout = (LinearLayout) LayoutInflater.from(DetailsDailyActivity.this).inflate(R.layout.details_head , null ) ;
 
         relative_des = (RelativeLayout) headLinearLayout.findViewById(R.id.relative_des ) ;
@@ -142,19 +161,23 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         pictureDet01 = (ImageView) findViewById(R.id.pictureDet ) ;
         relative_pictureDet01 = (LinearLayout) findViewById(R.id.relative_pictureDet ) ;
         line01 = (TextView) findViewById(R.id.line ) ;
-        text_01 = (TextView) findViewById(R.id.text_01 ) ;
-        text_02 = (TextView) findViewById(R.id.text_02 ) ;
-        text_03 = (TextView) findViewById(R.id.text_03 ) ;
-        text_04 = (TextView) findViewById(R.id.text_04 ) ;
-        listView = (ListView) findViewById(R.id.listView ) ;
-        //info_data_view = (TextView) findViewById(R.id.info_data_view ) ;
-        bottom_linear = (LinearLayout) findViewById(R.id.bottom_linear ) ;
-        scrollView = (ScrollView)findViewById(R.id.scrollView ) ;
 
+        //info_data_view = (TextView) findViewById(R.id.info_data_view ) ;
+        scrollView = (ScrollView)findViewById(R.id.scrollView ) ;
+        image_collect = (ImageView)findViewById(R.id.image_collect ) ;
+        image_share = (ImageView)findViewById(R.id.image_share ) ;
         time01 = (TextView)findViewById(R.id.time ) ;
         text_title01 = (JustifyTextView)findViewById(R.id.title ) ;
 
+        listView = (ListView)findViewById(R.id.listView ) ;
         listView.addHeaderView(headLinearLayout);
+
+        text_send01 = (TextView)findViewById(R.id.text_send01 ) ;
+        text_send02 = (TextView)findViewById(R.id.text_send02 ) ;
+        edit_des01 = (EditText)findViewById(R.id.edit_des01 ) ;
+        edit_des02 = (EditText)findViewById(R.id.edit_des02 ) ;
+
+
 
 
     }
@@ -162,33 +185,93 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
     @Override
     public void initListeners() {
         pre.setOnClickListener(this);
-        text_01.setOnClickListener(this);
-        text_02.setOnClickListener(this);
-        text_03.setOnClickListener(this);
-        text_04.setOnClickListener(this);
+        image_collect.setOnClickListener(this);
+        image_share.setOnClickListener(this);
+        text_send01.setOnClickListener(this);
+        text_send02.setOnClickListener(this);
+        relative_download.setOnClickListener(this);
+        relative_call.setOnClickListener(this);
+
+        edit_des01.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!TextUtils.isEmpty(s.toString())){
+                    text_send01.setSelected(true);
+                }else {
+                    text_send01.setSelected(false);
+                }
+            }
+        });
+        edit_des02.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!TextUtils.isEmpty(s.toString())){
+                    text_send02.setSelected(true);
+                }else {
+                    text_send02.setSelected(false);
+                }
+            }
+        });
+        edit_des01.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+                if (arg1 == EditorInfo.IME_ACTION_SEARCH) {
+                    sendComments(edit_des01) ;
+                }
+                return false;
+            }
+
+        });
+        edit_des02.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+                if (arg1 == EditorInfo.IME_ACTION_SEARCH) {
+                    sendComments(edit_des02) ;
+                }
+                return false;
+            }
+
+        });
     }
 
     @Override
     public void initData() {
         Intent intent = getIntent() ;
         id = intent.getStringExtra("id");
-        if (intent.getStringExtra("type") != null ){
-            popupHandler.sendEmptyMessageDelayed(0, 1000);
-        }
+
     }
-
-    private Handler popupHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-                    showCommitWindow();
-                    break;
-            }
-        }
-
-    };
-
+    //v1版本功能。暂时废弃
+//    private Handler popupHandler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case 0:
+//                    showCommitWindow();
+//                    break;
+//            }
+//        }
+//
+//    };
 
     @Override
     public void onClick(View v) {
@@ -196,26 +279,57 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
             case R.id.pre :
                 finish();
                 break;
-            case R.id.text_01 :
-                gocall() ;
-                break;
-            case R.id.text_02 :
-                //if (GetBenSharedPreferences.getIsLogin(DetailsDailyActivity.this)){
-                    showCommitWindow() ;
-                //}else {
-                //    goLoginActivity() ;
-                //}
-
-                break;
-            case R.id.text_03 :
+//            case R.id.text_01 :
+//                gocall() ;
+//                break;
+//            case R.id.text_02 :
+//                //if (GetBenSharedPreferences.getIsLogin(DetailsDailyActivity.this)){
+//                    showCommitWindow() ;
+//                //}else {
+//                //    goLoginActivity() ;
+//                //}
+//
+//                break;
+            case R.id.image_collect :
                 if (GetBenSharedPreferences.getIsLogin(DetailsDailyActivity.this)){
-                    loadCollectData(id  , text_03) ;
+                    loadCollectData(id  , image_collect) ;
                 }else {
                     goLoginActivity() ;
                 }
                 break;
-            case R.id.text_04 :
+            case R.id.image_share :
                 showShare() ;
+                break;
+            case R.id.text_send01 :
+                sendComments(edit_des01) ;
+                break;
+            case R.id.text_send02 :
+                sendComments(edit_des02) ;
+                break;
+            case R.id.relative_call:
+                if (GetBenSharedPreferences.getIsLogin(DetailsDailyActivity.this)){
+                    //显示是否拨打电话的登陆按钮
+                    showCustomDialog(price) ;
+                }else {
+                    goLoginActivity() ;
+                }
+                break;
+            case R.id.relative_download:
+                if (GetBenSharedPreferences.getIsLogin(DetailsDailyActivity.this)){
+                    if (text_download.getText().toString().equals("下载成功,点击打开")){
+                        Intent intent = new Intent(Intent.ACTION_VIEW);//Intent.ACTION_VIEW = "android.intent.action.VIEW"
+                        intent.addCategory(Intent.CATEGORY_DEFAULT);//Intent.CATEGORY_DEFAULT = "android.intent.category.DEFAULT"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Uri uri = Uri.fromFile(new File(path ));
+                        intent.setDataAndType(uri, "application/pdf");
+                        startActivity(intent);
+                    }else {
+                        download() ;
+                    }
+                }else {
+                    goLoginActivity() ;
+                }
+
                 break;
             default:
                 break;
@@ -223,12 +337,229 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         }
     }
 
+    private void showCustomDialog(String price ) {
+
+//        if ("1".equals(PayFlag)){
+//            //已经支付过
+//            final CustomDialog.Builder builder01 = new CustomDialog.Builder(DetailsDailyActivity.this);
+//            builder01.setTitle("亲爱的用户");
+//            builder01.setMessage("您确定要联系" + phoneNumber + "?");
+//            builder01.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {goCallNumber() ;
+//                    // TODO: 2017/8/4 拨打电话
+//                }
+//            });
+//            builder01.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.dismiss();
+//                }
+//            });
+//            builder01.create().show();
+//
+//        }else {
+//            //还未支付过,是否是收费信息，若是收费信息，直接拨打电话，不是收费信息，则调用接口拨打电话。
+//            showPopUpWindow(price) ;
+//        }
+
+    }
+
+    private void showPopUpWindow(String price ) {
+        // 利用layoutInflater获得View
+//        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View view = inflater.inflate(R.layout.popupwindow_publish, null);
+//        final PopupWindow window = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        RelativeLayout relative = (RelativeLayout)view.findViewById(R.id.relative ) ;
+//        final TextView info_type = (TextView)view.findViewById(R.id.info_type ) ;
+//        final TextView info_title = (TextView)view.findViewById(R.id.info_title ) ;
+//        final TextView shejian_price = (TextView)view.findViewById(R.id.shejian_price ) ;
+//        final TextView shejian_balance = (TextView)view.findViewById(R.id.shejian_balance ) ;
+//        final TextView balance_type = (TextView)view.findViewById(R.id.balance_type ) ;
+//        final Button shejian_pay = (Button)view.findViewById(R.id.shejian_pay ) ;
+//        final Button shejian_recharge = (Button)view.findViewById(R.id.shejian_recharge ) ;
+//        final ImageButton pay_cancel = (ImageButton)view.findViewById(R.id.pay_cancel ) ;
+//        final LinearLayout shejian_two = (LinearLayout)view.findViewById(R.id.shejian_two ) ;
+//        TextPaint tp = shejian_price.getPaint();
+//        tp.setFakeBoldText(true);
+//        TextPaint tp01 = shejian_balance.getPaint();
+//        tp01.setFakeBoldText(true);
+//
+//        //消费
+//        shejian_pay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //去消费
+//                //goPay(window , position );
+//            }
+//        });
+//        //充值
+//        shejian_recharge.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //跳转到充值页面
+//                goRechargeActivity(window) ;
+//
+//            }
+//        });
+//
+//        //Member 2收费信息 其他为不收费信息
+//        info_type.setText("该信息为付费资源");
+//        info_title.setText("消耗芽币可查看详细信息");
+//        shejian_two.setVisibility(View.VISIBLE);
+//        shejian_price.setText(price);
+//        shejian_balance.setText(price);
+//        if (Integer.parseInt(price) < Integer.parseInt(list.get(position).getPrice())){
+//            balance_type.setVisibility(View.VISIBLE);
+//        }else {
+//            balance_type.setVisibility(View.GONE);
+//        }
+//
+//        pay_cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                window.dismiss();
+//            }
+//        });
+//        window.setFocusable(true);
+//        //点击空白的地方关闭PopupWindow
+//        window.setBackgroundDrawable(new BitmapDrawable());
+//        window.setAnimationStyle(R.style.mypopwindow_anim_style);
+//        // 在底部显示
+//        window.showAtLocation(relative, Gravity.CENTER, 0, 0);
+//        // 设置popWindow的显示和消失动画
+//
+//        backgroundAlpha(0.2f);
+//        convertView.setEnabled(true);
+//        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//                backgroundAlpha(1f);
+//                convertView.setEnabled(true);
+//            }
+//        });
+
+    }
+
+    private void goPay(){
+        //1.0.5版本。收费信息到此页面，一定是支付过，未支付的信息为不收费信息。
+//            String url = String.format(Url.Pay, login ) ;
+//            HttpUtils httpUtils = new HttpUtils() ;
+//            RequestParams params = new RequestParams() ;
+//            params.addBodyParameter("ProjectID" , id );
+//            httpUtils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
+//                @Override
+//                public void onSuccess(ResponseInfo<String> responseInfo) {
+//                    Log.e("benben" , responseInfo.result ) ;
+//                    org.json.JSONObject jsonObject = null;
+//                    try {
+//                        jsonObject = new org.json.JSONObject(responseInfo.result);
+//                        String status_code = jsonObject.getString("status_code");
+//                        switch (status_code){
+//                            case "200" :
+//                                PayFlag = "1" ;
+//                                //textView6.setText("已约谈");
+//                                final CustomDialog.Builder builder01 = new CustomDialog.Builder(V2DetailsFindInfoActivity.this);
+//                                builder01.setTitle("亲爱的用户");
+//                                builder01.setMessage("您确定要联系" + connectPhone + "?");
+//                                builder01.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {goCallNumber() ;
+//
+//                                    }
+//                                });
+//                                builder01.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        dialog.dismiss();
+//                                    }
+//                                });
+//                                builder01.create().show();
+//                                break;
+//                            case "416" :
+//                                ToastUtils.shortToast(V2DetailsFindInfoActivity.this , "非收费信息");
+//                                break;
+//                            case "417" :
+//                                ToastUtils.shortToast(V2DetailsFindInfoActivity.this , "您已经支付过该条信息");
+//                                break;
+//                            case "418" :
+//                                ToastUtils.shortToast(V2DetailsFindInfoActivity.this , "余额不足，请充值。");
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onFailure(HttpException error, String msg) {
+//                    error.printStackTrace();
+//                    ToastUtils.shortToast( V2DetailsFindInfoActivity.this , "网络连接异常");
+//                }
+//            }) ;
+    }
+
+    private void goRechargeActivity(PopupWindow window) {
+        Intent intent = new Intent(DetailsDailyActivity.this ,  MyGoldAddActivity.class );
+        startActivity(intent);
+        window.dismiss();
+    }
+
+    private void goCallNumber() {
+        String str = "tel:" + phoneNumber;
+        //直接拨打电话
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(str));
+        if (ActivityCompat.checkSelfPermission(DetailsDailyActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ToastUtils.shortToast(DetailsDailyActivity.this, "请在管理中心，给予直接拨打电话权限。");
+            return;
+        }
+        startActivity(intent);
+    }
+
+    private void download(){
+        final long ben = System.currentTimeMillis() ;
+        path = "/sdcard/"+ ben +".pdf" ;
+        HttpUtils http = new HttpUtils();
+        http.download( Url.FileIP + downLoadUrl, "/sdcard/"+ ben +".pdf", true, true, new RequestCallBack<File>() {
+
+            @Override
+            public void onStart() {
+                text_download.setText("正在连接...");
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isUploading) {
+                text_download.setText(current + "/" + total);
+            }
+
+            @Override
+            public void onFailure(HttpException error, String msg) {
+                if ("maybe the file has downloaded completely".equals(msg)){
+                    text_download.setText("文件位置：/sdcard/"+ben+".pdf");
+                    ToastUtils.shortToast(DetailsDailyActivity.this  , "文件已下载");
+                }
+            }
+
+            @Override
+            public void onSuccess(ResponseInfo<File> responseInfo) {
+                // TODO Auto-generated method stub
+                //text_download.setText("文件位置：" + responseInfo.result.getPath());
+                ToastUtils.shortToast(DetailsDailyActivity.this, "文件下载成功");
+                text_download.setText("下载成功,点击打开");
+            }
+        });
+
+    }
+
     private void goLoginActivity() {
         Intent intent = new Intent(DetailsDailyActivity.this , LoginActivity.class ) ;
         startActivity(intent);
     }
 
-    private void sendComments(EditText editText, final PopupWindow window) {
+    private void sendComments(final EditText editText) {
         if (!TextUtils.isEmpty(editText.getText().toString().trim())){
             String urls ;
             if (null == GetBenSharedPreferences.getTicket(DetailsDailyActivity.this) ){
@@ -251,7 +582,7 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                             case "200" :
                                 ToastUtils.shortToast(DetailsDailyActivity.this, "评论发表成功");
                                 loadData01(2);
-                                window.dismiss();
+                                editText.clearFocus();
                                 break;
                             default:
                                 break;
@@ -270,63 +601,64 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         }
     }
 
-    private void showCommitWindow() {
-        //scrollView.smoothScrollTo(0, relative_des.getHeight() + relative_pictureDet.getHeight() + line.getHeight());
-        // 利用layoutInflater获得View
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.popupwindow_comment, null);
-        final PopupWindow window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        final EditText editText = (EditText)view.findViewById(R.id.editText);
-        final TextView text_commit = (TextView)view.findViewById(R.id.text_commit ) ;
-        text_commit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendComments(editText, window);
-            }
-        });
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                InputMethodManager inputManager = (InputMethodManager)editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.showSoftInput(editText, 0);
-            }
-
-        }, 100);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(s.toString())){
-                    text_commit.setSelected(true);
-                }else {
-                    text_commit.setSelected(false);
-                }
-            }
-        });
-        //点击空白的地方关闭PopupWindow
-        window.setBackgroundDrawable(new BitmapDrawable());
-        // 设置popWindow的显示和消失动画
-        window.setAnimationStyle(R.style.mypopwindow_anim_style);
-        // 在底部显示
-        window.setFocusable(true);
-        window.showAtLocation(bottom_linear, Gravity.BOTTOM, 0, 0);
-        backgroundAlpha(0.5f);
-        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                backgroundAlpha(1f);
-            }
-        });
-    }
+//      v1版本功能。暂时废弃
+//    private void showCommitWindow() {
+//        //scrollView.smoothScrollTo(0, relative_des.getHeight() + relative_pictureDet.getHeight() + line.getHeight());
+//        // 利用layoutInflater获得View
+//        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View view = inflater.inflate(R.layout.popupwindow_comment, null);
+//        final PopupWindow window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        final EditText editText = (EditText)view.findViewById(R.id.editText);
+//        final TextView text_commit = (TextView)view.findViewById(R.id.text_commit ) ;
+//        text_commit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendComments(editText, window);
+//            }
+//        });
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            public void run() {
+//                InputMethodManager inputManager = (InputMethodManager)editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                inputManager.showSoftInput(editText, 0);
+//            }
+//
+//        }, 100);
+//        editText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                if (!TextUtils.isEmpty(s.toString())){
+//                    text_commit.setSelected(true);
+//                }else {
+//                    text_commit.setSelected(false);
+//                }
+//            }
+//        });
+//        //点击空白的地方关闭PopupWindow
+//        window.setBackgroundDrawable(new BitmapDrawable());
+//        // 设置popWindow的显示和消失动画
+//        window.setAnimationStyle(R.style.mypopwindow_anim_style);
+//        // 在底部显示
+//        window.setFocusable(true);
+//        window.showAtLocation(bottom_linear, Gravity.BOTTOM, 0, 0);
+//        backgroundAlpha(0.5f);
+//        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//                backgroundAlpha(1f);
+//            }
+//        });
+//    }
 
     /**
      * 设置添加屏幕的背景透明度
@@ -337,7 +669,7 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         getWindow().setAttributes(lp);
     }
 
-    private void loadCollectData(String id , final TextView v ) {
+    private void loadCollectData(String id , final ImageView v ) {
         HttpUtils httpUtils = new HttpUtils() ;
         RequestParams params = new RequestParams() ;
         params.addBodyParameter("projectId" , id );
@@ -353,24 +685,18 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                         String msg = object.getString("success_msg");
                         switch (msg) {
                             case "取消收藏成功":
-                                GoodView goodView01 = new GoodView(DetailsDailyActivity.this);
-                                goodView01.setTextInfo("取消收藏" , Color.rgb(153,153,153) , 10 );
-                                goodView01.show(v);
+//                                GoodView goodView01 = new GoodView(DetailsDailyActivity.this);
+//                                goodView01.setTextInfo("取消收藏" , Color.rgb(153,153,153) , 10 );
+//                                goodView01.show(v);
                                 //未收藏
-                                Drawable drawable02 = getResources().getDrawable(R.mipmap.xqshoucang);
-                                drawable02.setBounds(0, 0, drawable02.getMinimumWidth(), drawable02.getMinimumHeight());
-                                text_03.setCompoundDrawables(null, drawable02, null, null);
-                                text_03.setTextColor(Color.rgb(153,153,153));
+                               v.setImageResource(R.mipmap.xqshoucang);
                                 break;
                             case "收藏成功":
-                                GoodView goodView = new GoodView(DetailsDailyActivity.this);
-                                goodView.setTextInfo("收藏成功" , Color.rgb(255,77,77) , 10 );
-                                goodView.show(v);
+//                                GoodView goodView = new GoodView(DetailsDailyActivity.this);
+//                                goodView.setTextInfo("收藏成功" , Color.rgb(255,77,77) , 10 );
+//                                goodView.show(v);
                                 //收藏
-                                Drawable drawable01 = getResources().getDrawable(R.mipmap.details_collect);
-                                drawable01.setBounds(0, 0, drawable01.getMinimumWidth(), drawable01.getMinimumHeight());
-                                text_03.setCompoundDrawables(null, drawable01, null, null);
-                                text_03.setTextColor(Color.rgb(255,77,77));
+                                v.setImageResource(R.mipmap.xq_yishoucang);
                                 break;
                             default:
                                 break;
@@ -394,9 +720,9 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        oks.setTitle(title);
+        oks.setTitle("【资芽早报】" + title);
         oks.setTitleUrl(Url.ShareInfo + id );
-        oks.setImageUrl("http://images.ziyawang.com/Applogo/logo.png");
+        oks.setImageUrl("http://images.ziyawang.com/news/ziyaPaper.png");
         oks.setText(content);
         // url仅在微信（包括好友和朋友圈）中使用
         oks.setUrl(Url.ShareInfo + id );
@@ -410,7 +736,8 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         builder01.setMessage("您确定要联系资芽网客服?");
         builder01.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {goCallNumber() ;
+            public void onClick(DialogInterface dialog, int which) {
+                goCallNumber() ;
 
             }
         });
@@ -423,16 +750,6 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
         builder01.create().show();
     }
 
-    private void goCallNumber() {
-        String str = "tel:" + phoneNumber ;
-        //直接拨打电话
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(str));
-        if (ActivityCompat.checkSelfPermission(DetailsDailyActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ToastUtils.shortToast(DetailsDailyActivity.this, "请在管理中心，给予直接拨打电话权限。");
-            return;
-        }
-        DetailsDailyActivity.this.startActivity(intent);
-    }
 
     private void loadData() {
         HttpUtils httpUtils = new HttpUtils() ;
@@ -458,18 +775,60 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                         detContent_string = data.getJSONObject(0).getString("detContent");
                         String status = data.getJSONObject(0).getString("status");
                         phoneNumber = data.getJSONObject(0).getString("phoneNumber") ;
+                        price = data.getJSONObject(0).getString("price");
+                        loadPrice = data.getJSONObject(0).getString("loadPrice");
+                        downLoadUrl = data.getJSONObject(0).getString("downLoad");
+                        if (!TextUtils.isEmpty(data.getJSONObject(0).getString("label"))){
+                            home_type = data.getJSONObject(0).getString("label") ;
+                            switch (home_type){
+                                case "1" :
+                                    common_title.setText("转让");
+                                    text_call.setText(price + "芽币");
+                                    text_download.setText(loadPrice + "芽币");
+                                    relative_download.setVisibility(View.VISIBLE);
+                                    relative_call.setVisibility(View.VISIBLE);
+                                    linear_bottom.setVisibility(View.VISIBLE);
+                                    break;
+                                case "2" :
+                                    common_title.setText("求购");
+                                    text_call.setText(price + "芽币");
+                                    relative_download.setVisibility(View.GONE);
+                                    relative_call.setVisibility(View.VISIBLE);
+                                    linear_bottom.setVisibility(View.VISIBLE);
+                                    break;
+                                case "3" :
+                                    common_title.setText("服务");
+                                    text_call.setText(price + "芽币");
+                                    relative_download.setVisibility(View.GONE);
+                                    relative_call.setVisibility(View.VISIBLE);
+                                    linear_bottom.setVisibility(View.VISIBLE);
+                                    break;
+                                case "4" :
+                                    common_title.setText("融资");
+                                    text_call.setText(price + "芽币");
+                                    text_download.setText(loadPrice + "芽币");
+                                    relative_download.setVisibility(View.VISIBLE);
+                                    relative_call.setVisibility(View.VISIBLE);
+                                    linear_bottom.setVisibility(View.VISIBLE);
+                                    break;
+                                case "5" :
+                                    common_title.setText("新闻");
+                                    linear_bottom.setVisibility(View.GONE);
+                                    break;
+                                default:
+                                    ToastUtils.shortToast(DetailsDailyActivity.this , "label => " + home_type );
+                                    break;
+                            }
+                        }else{
+                            ToastUtils.shortToast(DetailsDailyActivity.this , "label null error");
+                        }
+
                         if ("1".equals(status)){
                             //收藏
-                            Drawable drawable02 = getResources().getDrawable(R.mipmap.details_collect);
-                            drawable02.setBounds(0, 0, drawable02.getMinimumWidth(), drawable02.getMinimumHeight());
-                            text_03.setCompoundDrawables(null, drawable02, null, null);
-                            text_03.setTextColor(Color.rgb(255,77,77));
+                            image_collect.setImageResource(R.mipmap.xq_yishoucang);
                         }else {
                             //未收藏
-                            Drawable drawable02 = getResources().getDrawable(R.mipmap.xqshoucang);
-                            drawable02.setBounds(0, 0, drawable02.getMinimumWidth(), drawable02.getMinimumHeight());
-                            text_03.setCompoundDrawables(null, drawable02, null, null);
-                            text_03.setTextColor(Color.rgb(153,153,153));
+                            image_collect.setImageResource(R.mipmap.xqshoucang);
                         }
 
                         final String pictureDet_str = data.getJSONObject(0).getString("describe");
@@ -502,20 +861,20 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
 
 
                         }
-                        String type = data.getJSONObject(0).getString("type");
-                        switch (type){
-                            case "1" :
-                                common_title.setText("资讯");
-                                break;
-                            case "2" :
-                                common_title.setText("找项目");
-                                break;
-                            case "3" :
-                                common_title.setText("出售资产");
-                                break;
-                            default:
-                                break;
-                        }
+//                        String type = data.getJSONObject(0).getString("type");
+//                        switch (type){
+//                            case "1" :
+//                                common_title.setText("资讯");
+//                                break;
+//                            case "2" :
+//                                common_title.setText("找项目");
+//                                break;
+//                            case "3" :
+//                                common_title.setText("出售资产");
+//                                break;
+//                            default:
+//                                break;
+//                        }
 
                         des.setText(content);
                         des01.setText(content);
@@ -524,7 +883,7 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
                         text_title.setText(title);
                         text_title01.setText(title);
 
-                        String html = "<head><style>body{max-width:94%important;margin:0 auto;overflow:hidden!important;}img{max-width:320px !important;height:auto!important;margin:0 auto;width:100%!important;display:block;}</style></head>" + "<body>" + detContent_string + "</body>";
+                        String html = "<head><style>body{text-align:justify;max-width:94%important;margin:0 auto;overflow:hidden!important;}img{max-width:320px !important;height:auto!important;margin:0 auto;width:100%!important;display:block;}</style></head>" + "<body>" + detContent_string + "</body>";
                         WebSettings ws = detContent.getSettings();
                         ws.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
                         detContent.setVerticalScrollBarEnabled(false);
@@ -599,4 +958,5 @@ public class DetailsDailyActivity extends BenBenActivity implements View.OnClick
             }
         }) ;
     }
+
 }

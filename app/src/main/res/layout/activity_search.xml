@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.ziyawang.ziyadaily.activity.SearchActivity">
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/common_bg"
+        android:layout_width="match_parent"
+        android:layout_height="56dp" >
+
+        <RelativeLayout
+            android:id="@+id/pre"
+            android:layout_width="45dp"
+            android:layout_height="56dp">
+            <ImageView
+                android:layout_marginLeft="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <com.ziyawang.ziyadaily.views.XEditText
+            android:paddingRight="10dp"
+            android:id="@+id/edit_search"
+            android:drawablePadding="7dp"
+            android:paddingLeft="16dp"
+            android:drawableLeft="@mipmap/sousuo"
+            android:textColorHint="#666"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:hint="请输入搜索内容"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/pre"
+            android:background="@drawable/bgfff_rad50"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:imeOptions="actionSearch"
+            android:inputType="text"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_title"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="#999"
+            android:paddingLeft="16dp"
+            android:gravity="center_vertical"
+            android:text="猜你想搜的"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:background="#f4f4f4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <GridView
+            android:background="#f4f4f4"
+            android:verticalSpacing="1dp"
+            android:horizontalSpacing="1dp"
+            android:numColumns="2"
+            android:id="@+id/gridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </GridView>
+        <TextView
+            android:background="#f4f4f4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

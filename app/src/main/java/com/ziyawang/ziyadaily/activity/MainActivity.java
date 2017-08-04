@@ -9,8 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
@@ -27,6 +27,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.ziyawang.ziyadaily.R;
 import com.ziyawang.ziyadaily.fragment.CollectFragment;
 import com.ziyawang.ziyadaily.fragment.HomeFragment;
+import com.ziyawang.ziyadaily.fragment.HomeItemFragment;
 import com.ziyawang.ziyadaily.fragment.MyFragment;
 import com.ziyawang.ziyadaily.fragment.PublishFragment;
 import com.ziyawang.ziyadaily.tools.DownLoadManager;
@@ -42,7 +43,7 @@ import java.util.List;
 
 public class MainActivity extends BenBenActivity {
 
-    private HomeFragment homeFragment ;  //首页Fragment
+    private HomeFragment homeFragment;  //首页Fragment
     private CollectFragment collectFragment ; //收藏Fragment
     private PublishFragment publishFragment ; //发布Fragment
     private MyFragment myFragment ;  //我的Fragment
@@ -77,7 +78,7 @@ public class MainActivity extends BenBenActivity {
         publishFragment = new PublishFragment() ;
 
         final List<Fragment> listFragment = new ArrayList() ;
-        listFragment.add(0 , homeFragment );
+        listFragment.add(0 , homeFragment);
         listFragment.add(1 , collectFragment );
         listFragment.add(2 , publishFragment );
         listFragment.add(3 , myFragment );
@@ -90,7 +91,7 @@ public class MainActivity extends BenBenActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (position) {
                     case 0:
-                        ActiveFragment(listFragment,transaction,homeFragment);
+                        ActiveFragment(listFragment,transaction, homeFragment);
                         break;
                     case 1:
                         ActiveFragment(listFragment,transaction,publishFragment);
@@ -102,7 +103,7 @@ public class MainActivity extends BenBenActivity {
                         ActiveFragment(listFragment,transaction,myFragment);
                         break;
                     default:
-                        ActiveFragment(listFragment,transaction,homeFragment);
+                        ActiveFragment(listFragment,transaction, homeFragment);
                         break;
                 }
                 transaction.commit();
@@ -120,7 +121,7 @@ public class MainActivity extends BenBenActivity {
 
     @Override
     public void initData() {
-//底部导航特性设置
+        //底部导航特性设置
         bottomNavigationBar.setAutoHideEnabled(false);//自动隐藏
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
@@ -306,6 +307,17 @@ public class MainActivity extends BenBenActivity {
         //执行的数据类型
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         startActivity(intent);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

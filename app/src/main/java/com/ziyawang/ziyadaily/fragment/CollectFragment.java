@@ -28,6 +28,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.ziyawang.ziyadaily.R;
 import com.ziyawang.ziyadaily.activity.CustomizationDailyActivity;
 import com.ziyawang.ziyadaily.activity.LoginActivity;
+import com.ziyawang.ziyadaily.activity.SearchActivity;
 import com.ziyawang.ziyadaily.adapter.CollectAdapter;
 import com.ziyawang.ziyadaily.adapter.HomeAdapter;
 import com.ziyawang.ziyadaily.entity.HomeEntity;
@@ -120,8 +121,9 @@ public class CollectFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.customizationDaily:
                 if (GetBenSharedPreferences.getIsLogin(getActivity())) {
-                    Intent intent = new Intent(getActivity(), CustomizationDailyActivity.class);
+                    Intent intent = new Intent(getActivity(), SearchActivity.class);
                     startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.in , R.anim.out );
                 } else {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);

@@ -14,12 +14,13 @@ public class HomeEntity {
     private String describe ;
     private String created_at ;
     private String updated_at ;
-    private String status ;
     private String phoneNumber ;
+    private String price ;
+    private String downLoad ;
 
     public HomeEntity() {}
 
-    public HomeEntity(String projectId, String title, String content, String type, String label, String describe, String created_at, String updated_at, String status , String phoneNumber) {
+    public HomeEntity(String projectId, String title, String content, String type, String label, String describe, String created_at, String updated_at, String phoneNumber, String price, String downLoad) {
         super();
         this.projectId = projectId;
         this.title = title;
@@ -29,8 +30,9 @@ public class HomeEntity {
         this.describe = describe;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.status = status;
-        this.phoneNumber = phoneNumber ;
+        this.phoneNumber = phoneNumber;
+        this.price = price;
+        this.downLoad = downLoad;
     }
 
     public String getPhoneNumber() {
@@ -105,11 +107,19 @@ public class HomeEntity {
         this.updated_at = updated_at;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPrice() {
+        return price;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDownLoad() {
+        return downLoad;
+    }
+
+    public void setDownLoad(String downLoad) {
+        this.downLoad = downLoad;
     }
 }

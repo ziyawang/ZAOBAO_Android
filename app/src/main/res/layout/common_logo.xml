@@ -10,6 +10,7 @@
         android:layout_height="56dp">
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_marginLeft="11dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/logo"
@@ -17,18 +18,22 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/customizationDaily"
-            android:drawablePadding="5dp"
+           android:layout_centerVertical="true"
+            android:paddingLeft="16dp"
             android:gravity="center_vertical"
-            android:textColor="#333"
-            android:textSize="16sp"
-            android:text="@string/customizationDaily"
-            android:drawableLeft="@mipmap/add_me"
+            android:background="@drawable/bgfff_rad50"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="15dp"
-            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/logo"
+            android:id="@+id/customizationDaily"
+            android:drawablePadding="9dp"
+            android:textColor="#999"
+            android:textSize="15sp"
+            android:text="综合搜索"
+            android:drawableLeft="@mipmap/sousuo"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="34dp" />
 
     </RelativeLayout>
 

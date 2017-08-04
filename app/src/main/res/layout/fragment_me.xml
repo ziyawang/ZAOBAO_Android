@@ -20,15 +20,29 @@
             android:layout_centerVertical="true"
             android:layout_width="65dp"
             android:layout_height="65dp" />
-        <TextView
-            android:id="@+id/userName"
+
+        <RelativeLayout
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@id/icon"
-            android:textColor="#333"
-            android:textSize="15sp"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/userName"
+                android:textColor="#333"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/userName"
+                android:id="@+id/text_account"
+                android:textColor="#666"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
 
         <ImageView
             android:layout_marginRight="16dp"
@@ -82,6 +96,21 @@
         android:drawablePadding="17dp"
         android:gravity="center_vertical"
         android:text="@string/me_MyMessage"
+        android:background="@color/white"
+        android:layout_marginTop="1px"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textColor="#333"
+        android:id="@+id/me_gold_add"
+        android:paddingLeft="17dp"
+        android:paddingRight="16dp"
+        android:drawableLeft="@mipmap/yabi"
+        android:drawableRight="@mipmap/next"
+        android:drawablePadding="17dp"
+        android:gravity="center_vertical"
+        android:text="@string/me_gold_add"
         android:background="@color/white"
         android:layout_marginTop="1px"
         android:layout_width="match_parent"

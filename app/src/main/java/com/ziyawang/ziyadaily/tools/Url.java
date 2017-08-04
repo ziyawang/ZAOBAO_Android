@@ -36,6 +36,7 @@ public class Url {
     public static final String sendMessage = IP + "message?token=%s" ;
     public static final String returnType = IP + "returnType?token=%s" ;
     public static final String ShareInfo = IP + "detail/" ;
+    public static final String ShareInfoDay = IP + "project/" ;
     public static final String CheckVersion = IP + "update" ;
 
 
@@ -45,8 +46,16 @@ public class Url {
     //图片
     public static final String FileIP =  "http://images.ziyawang.com";
 
-
+    //资芽公约
     public static final String Rule = "http://files.ziyawang.com/law.html" ;
 
+    //支付接口
+    public static final String PayCharge = "https://apis.ziyawang.com/zll/pay?access_token=token&token=%s" ;
+    public static final String RechargeType = "https://apis.ziyawang.com/zll/pay/list?access_token=token" ;
+
+
+    //v1.0.3接口
+    public static final String HomeData103 = IP + "v2/index?token=%s" ;
+    public static final String SearchTitle = IP + "v2/returnValue" ;
 
 }

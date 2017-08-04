@@ -95,21 +95,29 @@ public class HomeAdapter extends BaseAdapter {
             holder.time_title = (TextView) convertView.findViewById(R.id.time_title);
             holder.black = (TextView) convertView.findViewById(R.id.black);
             holder.relative_time_title = (RelativeLayout) convertView.findViewById(R.id.relative_time_title);
+            holder.text_share_today = (TextView) convertView.findViewById(R.id.text_share_today);
+            holder.relative_mid = (RelativeLayout) convertView.findViewById(R.id.relative_mid);
             convertView.setTag(holder);
 
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        switch (list.get(position).getType()) {
+        switch (list.get(position).getLabel()) {
             case "1":
-                holder.image_type.setImageResource(R.mipmap.zixun);
-                break;
-            case "2":
                 holder.image_type.setImageResource(R.mipmap.zhaoxiangmu);
                 break;
-            case "3":
+            case "2":
                 holder.image_type.setImageResource(R.mipmap.zichanbao);
+                break;
+            case "3":
+                holder.image_type.setImageResource(R.mipmap.fuwu);
+                break;
+            case "4":
+                holder.image_type.setImageResource(R.mipmap.rongzi);
+                break;
+            case "5":
+                holder.image_type.setImageResource(R.mipmap.zixun);
                 break;
             default:
                 break;
@@ -121,10 +129,7 @@ public class HomeAdapter extends BaseAdapter {
         //获取当天你的年月日
         //SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         //String date=sdf.format(new java.util.Date());
-        if (position == 0) {
-            holder.black.setVisibility(View.VISIBLE);
-            holder.relative_time_title.setVisibility(View.GONE);
-        } else if (list.get(position).getCreated_at().substring(0, 10).equals(list.get(position - 1).getCreated_at().substring(0, 10))) {
+        if (position != 0 && list.get(position).getCreated_at().substring(0, 10).equals(list.get(position - 1).getCreated_at().substring(0, 10))) {
             holder.relative_time_title.setVisibility(View.GONE);
             holder.black.setVisibility(View.VISIBLE);
         } else {
@@ -133,75 +138,94 @@ public class HomeAdapter extends BaseAdapter {
             String week = TimeChange.dateToWeek(list.get(position).getCreated_at().substring(0, 10));
             holder.time_title.setText("资芽早报  " + list.get(position).getCreated_at().substring(0, 10) + "  " + week );
         }
-        switch (list.get(position).getStatus()) {
-            case "0":
-                holder.text_03.setText(R.string.unCollect);
-                holder.text_03.setTextColor(Color.rgb(153, 153, 153));
-                holder.image_03.setImageResource(R.mipmap.shoucang);
-                break;
-            case "1":
-                holder.text_03.setText(R.string.collect);
-                holder.text_03.setTextColor(Color.rgb(255, 77, 77));
-                holder.image_03.setImageResource(R.mipmap.unshoucang);
-                break;
-            default:
-                break;
-        }
+//        switch (list.get(position).getStatus()) {
+//            case "0":
+//                holder.text_03.setText(R.string.unCollect);
+//                holder.text_03.setTextColor(Color.rgb(153, 153, 153));
+//                holder.image_03.setImageResource(R.mipmap.shoucang);
+//                break;
+//            case "1":
+//                holder.text_03.setText(R.string.collect);
+//                holder.text_03.setTextColor(Color.rgb(255, 77, 77));
+//                holder.image_03.setImageResource(R.mipmap.unshoucang);
+//                break;
+//            default:
+//                break;
+//        }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goDetailsDailyActivity(position);
             }
         });
-        holder.relative_01.setOnClickListener(new View.OnClickListener() {
+//        holder.relative_01.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final CustomDialog.Builder builder01 = new CustomDialog.Builder(context);
+//                builder01.setTitle("亲爱的用户");
+//                builder01.setMessage("您确定要联系资芽网客服?");
+//                builder01.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        goCallNumber(list.get(position).getPhoneNumber());
+//
+//                    }
+//                });
+//                builder01.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                builder01.create().show();
+//            }
+//        });
+//        holder.relative_02.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //if (GetBenSharedPreferences.getIsLogin(context)){
+//                Intent intent = new Intent(context, DetailsDailyActivity.class);
+//                intent.putExtra("id", list.get(position).getProjectId());
+//                intent.putExtra("type", "message");
+//                context.startActivity(intent);
+//                //}else {
+//                //    goLoginActivity() ;
+//                //}
+//            }
+//        });
+//        holder.relative_03.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (GetBenSharedPreferences.getIsLogin(context)) {
+//                    loadData(position, holder.relative_03);
+//                } else {
+//                    goLoginActivity();
+//                }
+//            }
+//        });
+//        holder.relative_04.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showShare(position);
+//            }
+//        });
+        holder.relative_time_title.setOnClickListener(null);
+        holder.relative_mid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final CustomDialog.Builder builder01 = new CustomDialog.Builder(context);
-                builder01.setTitle("亲爱的用户");
-                builder01.setMessage("您确定要联系资芽网客服?");
-                builder01.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        goCallNumber(list.get(position).getPhoneNumber());
-
-                    }
-                });
-                builder01.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder01.create().show();
-            }
-        });
-        holder.relative_02.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //if (GetBenSharedPreferences.getIsLogin(context)){
-                Intent intent = new Intent(context, DetailsDailyActivity.class);
-                intent.putExtra("id", list.get(position).getProjectId());
-                intent.putExtra("type", "message");
-                context.startActivity(intent);
-                //}else {
-                //    goLoginActivity() ;
-                //}
-            }
-        });
-        holder.relative_03.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (GetBenSharedPreferences.getIsLogin(context)) {
-                    loadData(position, holder.relative_03);
-                } else {
-                    goLoginActivity();
-                }
-            }
-        });
-        holder.relative_04.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showShare(position);
+                ShareSDK.initSDK(context);
+                OnekeyShare oks = new OnekeyShare();
+                //关闭sso授权
+                oks.disableSSOWhenAuthorize();
+                String week = TimeChange.dateToWeek(list.get(position).getCreated_at().substring(0, 10));
+                oks.setTitle("【资芽早报】资芽网旗下自媒体" +  list.get(position).getCreated_at().substring(0, 10) + "  " + week);
+                oks.setTitleUrl(Url.ShareInfoDay + list.get(position).getCreated_at().substring(0, 10));
+                oks.setImageUrl("http://images.ziyawang.com/news/ziyaPaper.png");
+                oks.setText("【资芽早报】资芽网旗下自媒体" +  list.get(position).getCreated_at().substring(0, 10) + "  " + week);
+                // url仅在微信（包括好友和朋友圈）中使用
+                oks.setUrl(Url.ShareInfoDay + list.get(position).getCreated_at().substring(0, 10));
+                // 启动分享GUI
+                oks.show(context);
             }
         });
         return convertView;
@@ -223,9 +247,9 @@ public class HomeAdapter extends BaseAdapter {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        oks.setTitle(list.get(position).getTitle());
+        oks.setTitle("【资芽早报】" + list.get(position).getTitle());
         oks.setTitleUrl(Url.ShareInfo + list.get(position).getProjectId());
-        oks.setImageUrl("http://images.ziyawang.com/Applogo/logo.png");
+        oks.setImageUrl("http://images.ziyawang.com/news/ziyaPaper.png");
         oks.setText(list.get(position).getContent());
         // url仅在微信（包括好友和朋友圈）中使用
         oks.setUrl(Url.ShareInfo + list.get(position).getProjectId());
@@ -244,52 +268,52 @@ public class HomeAdapter extends BaseAdapter {
         context.startActivity(intent);
     }
 
-    private void loadData(final int position, final RelativeLayout v) {
-        HttpUtils httpUtils = new HttpUtils();
-        RequestParams params = new RequestParams();
-        params.addBodyParameter("projectId", list.get(position).getProjectId());
-        String urls = String.format(Url.collect, GetBenSharedPreferences.getTicket(context));
-        httpUtils.send(HttpRequest.HttpMethod.POST, urls, params, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("collect", responseInfo.result);
-                JSONObject object = JSON.parseObject(responseInfo.result);
-                String status_code = object.getString("status_code");
-                switch (status_code) {
-                    case "200":
-                        String msg = object.getString("success_msg");
-                        switch (msg) {
-                            case "取消收藏成功":
-                                GoodView goodView01 = new GoodView(context);
-                                goodView01.setTextInfo("取消收藏", Color.rgb(153, 153, 153), 10);
-                                goodView01.show(v);
-                                list.get(position).setStatus("0");
-                                notifyDataSetChanged();
-                                break;
-                            case "收藏成功":
-                                GoodView goodView = new GoodView(context);
-                                goodView.setTextInfo("收藏成功", Color.rgb(255, 77, 77), 10);
-                                goodView.show(v);
-                                list.get(position).setStatus("1");
-                                notifyDataSetChanged();
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    default:
-                        break;
-
-                }
-            }
-
-            @Override
-            public void onFailure(HttpException error, String msg) {
-                error.printStackTrace();
-                ToastUtils.shortToast(context, "网络连接异常");
-            }
-        });
-    }
+//    private void loadData(final int position, final RelativeLayout v) {
+//        HttpUtils httpUtils = new HttpUtils();
+//        RequestParams params = new RequestParams();
+//        params.addBodyParameter("projectId", list.get(position).getProjectId());
+//        String urls = String.format(Url.collect, GetBenSharedPreferences.getTicket(context));
+//        httpUtils.send(HttpRequest.HttpMethod.POST, urls, params, new RequestCallBack<String>() {
+//            @Override
+//            public void onSuccess(ResponseInfo<String> responseInfo) {
+//                Log.e("collect", responseInfo.result);
+//                JSONObject object = JSON.parseObject(responseInfo.result);
+//                String status_code = object.getString("status_code");
+//                switch (status_code) {
+//                    case "200":
+//                        String msg = object.getString("success_msg");
+//                        switch (msg) {
+//                            case "取消收藏成功":
+//                                GoodView goodView01 = new GoodView(context);
+//                                goodView01.setTextInfo("取消收藏", Color.rgb(153, 153, 153), 10);
+//                                goodView01.show(v);
+//                                list.get(position).setStatus("0");
+//                                notifyDataSetChanged();
+//                                break;
+//                            case "收藏成功":
+//                                GoodView goodView = new GoodView(context);
+//                                goodView.setTextInfo("收藏成功", Color.rgb(255, 77, 77), 10);
+//                                goodView.show(v);
+//                                list.get(position).setStatus("1");
+//                                notifyDataSetChanged();
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(HttpException error, String msg) {
+//                error.printStackTrace();
+//                ToastUtils.shortToast(context, "网络连接异常");
+//            }
+//        });
+//    }
 
     static class ViewHolder {
         ImageView image_type;
@@ -302,6 +326,9 @@ public class HomeAdapter extends BaseAdapter {
         TextView time_title;
         TextView black ;
         RelativeLayout relative_time_title ;
+        TextView text_share_today ;
+        RelativeLayout relative_mid ;
+
     }
 
     public void addAll(Collection<? extends HomeEntity> collection) {

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ziyawang.ziyadaily.activity.MyGoldAddActivity">
+
+    <include layout="@layout/common_title_pre_text" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:id="@+id/ben"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#999"
+                    android:textSize="14sp"
+                    android:text="芽币余额：  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/text_account"
+                    android:textColor="#333"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.ziyawang.ziyadaily.views.MyGridView
+                android:background="#fff"
+                android:layout_below="@+id/ben"
+                android:id="@+id/gridView"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3">
+
+            </com.ziyawang.ziyadaily.views.MyGridView>
+
+            <!--微信-->
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/gridView"
+                android:background="#fff"
+                android:id="@+id/wx_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/wx_img"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:src="@mipmap/weiixn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_marginLeft="16dp"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/wx_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:text="微信支付"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#6d6d6d"
+                        android:textSize="12sp"
+                        android:text="推荐安装微信5.0及以上版本的用户使用"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/wx_select"
+                    android:layout_marginRight="16dp"
+                    android:src="@mipmap/select"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <!--支付宝-->
+            <RelativeLayout
+                android:layout_below="@id/wx_relative"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:id="@+id/alipay_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/alipay_img"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:src="@mipmap/zhifubao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_marginLeft="16dp"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/alipay_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:text="支付宝"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#6d6d6d"
+                        android:textSize="12sp"
+                        android:text="推荐支付宝用户使用"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/alipay_select"
+                    android:layout_marginRight="16dp"
+                    android:src="@mipmap/uncheck"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <!--银行卡支付-->
+            <RelativeLayout
+
+                android:layout_below="@id/alipay_relative"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:id="@+id/upacp_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/upacp_img"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:src="@mipmap/yinhang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_marginLeft="16dp"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/upacp_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:text="银行卡支付"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#6d6d6d"
+                        android:textSize="12sp"
+                        android:text="安全极速支付，无需开通网银"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/upacp_select"
+                    android:layout_marginRight="16dp"
+                    android:src="@mipmap/uncheck"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RelativeLayout>
+
+            <Button
+                android:gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg333_rad5"
+                android:textColor="#FDCF00"
+                android:textSize="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/upacp_relative"
+                android:id="@+id/recharge"
+                android:text="确认支付"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

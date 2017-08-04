@@ -11,22 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:textSize="12sp"
-            android:textColor="#f5a300"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
+        <RelativeLayout
+            android:id="@+id/relative_mid"
             android:layout_centerInParent="true"
-            android:background="@drawable/bgfff_rad50"
-            android:id="@+id/time_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:textSize="12sp"
+                android:textColor="#f5a300"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/bgfff_rad50_left"
+                android:id="@+id/time_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:drawableLeft="@mipmap/home_share_today"
+                android:layout_centerVertical="true"
+                android:text="分享"
+                android:drawablePadding="5dp"
+                android:id="@+id/text_share_today"
+                android:layout_toRightOf="@+id/time_title"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:textSize="12sp"
+                android:textColor="#f5a300"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="1dp"
+                android:background="@drawable/bgfff_rad50_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
@@ -35,8 +62,9 @@
             android:background="#ddd"
             android:layout_width="wrap_content"
             android:layout_height="1px"
-            android:layout_toLeftOf="@+id/time_title"
-            android:layout_toStartOf="@+id/time_title" />
+            android:layout_toLeftOf="@+id/relative_mid"
+            android:layout_toStartOf="@+id/relative_mid" />
+
         <TextView
             android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
@@ -45,8 +73,8 @@
             android:background="#ddd"
             android:layout_width="wrap_content"
             android:layout_height="1px"
-            android:layout_toRightOf="@+id/time_title"
-            android:layout_toEndOf="@+id/time_title" />
+            android:layout_toRightOf="@+id/relative_mid"
+            android:layout_toEndOf="@+id/relative_mid" />
 
     </RelativeLayout>
 
@@ -97,6 +125,7 @@
         </RelativeLayout>
 
         <TextView
+            android:layout_marginBottom="15dp"
             android:lineSpacingMultiplier="1.2"
             android:ellipsize="end"
             android:maxLines="3"
@@ -110,6 +139,7 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:background="#EBEBEB"

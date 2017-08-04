@@ -26,6 +26,7 @@ import com.ziyawang.ziyadaily.activity.AboutActivity;
 import com.ziyawang.ziyadaily.activity.FeedBackActivity;
 import com.ziyawang.ziyadaily.activity.InfoNoticeActivity;
 import com.ziyawang.ziyadaily.activity.LoginActivity;
+import com.ziyawang.ziyadaily.activity.MyGoldAddActivity;
 import com.ziyawang.ziyadaily.activity.MyMessageActivity;
 import com.ziyawang.ziyadaily.activity.MyPublishActivity;
 import com.ziyawang.ziyadaily.activity.PersonActivity;
@@ -62,12 +63,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView me_FeedBack ;
     private TextView me_SysSetting ;
     private TextView me_AboutUs ;
+    private TextView me_gold_add ;
 
     private String username ;
     private String phonenumber ;
     //头像在内存中的缓存bitmap
     private Bitmap bitmap ;
-
+    //芽币余额
+    private TextView text_account ;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,6 +100,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         me_FeedBack.setOnClickListener(this);
         me_SysSetting.setOnClickListener(this);
         me_AboutUs.setOnClickListener(this);
+        me_gold_add.setOnClickListener(this);
     }
 
     private void initView(View view) {
@@ -105,11 +109,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         userName = (TextView)view.findViewById(R.id.userName ) ;
         me_infoNotice = (TextView)view.findViewById(R.id.me_infoNotice ) ;
         me_MyPublish = (TextView)view.findViewById(R.id.me_MyPublish ) ;
+        me_gold_add = (TextView)view.findViewById(R.id.me_gold_add ) ;
         me_MyMessage = (TextView)view.findViewById(R.id.me_MyMessage ) ;
         me_FeedBack = (TextView)view.findViewById(R.id.me_FeedBack ) ;
         me_SysSetting = (TextView)view.findViewById(R.id.me_SysSetting ) ;
         me_AboutUs = (TextView)view.findViewById(R.id.me_AboutUs ) ;
         relative = (RelativeLayout) view.findViewById(R.id.relative ) ;
+        text_account = (TextView)view.findViewById(R.id.text_account ) ;
     }
 
     @Override
@@ -145,6 +151,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.me_MyMessage :
                 if (GetBenSharedPreferences.getIsLogin(getActivity())){
                     Intent intent02 = new Intent(getActivity() , MyMessageActivity.class ) ;
+                    startActivity(intent02);
+                }else {
+                    goLoginActivity() ;
+                }
+                break;
+            case R.id.me_gold_add :
+                if (GetBenSharedPreferences.getIsLogin(getActivity())){
+                    Intent intent02 = new Intent(getActivity() , MyGoldAddActivity.class ) ;
                     startActivity(intent02);
                 }else {
                     goLoginActivity() ;
@@ -191,7 +205,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (GetBenSharedPreferences.getIsLogin(getActivity())){
             loadData() ;
         }else {
-            // TODO: 2017/6/12  未登录干什么？？？
             icon.setImageResource(R.mipmap.icon_big);
             userName.setText(R.string.login_register);
         }
@@ -248,6 +261,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                             username = data.getJSONObject(0).getString("username");
                             phonenumber = data.getJSONObject(0).getString("phonenumber");
                             final String UserPicture = data.getJSONObject(0).getString("UserPicture");
+                            String account = data.getJSONObject(0).getString("Account");
                             new LoadImageAsyncTask(new LoadImageAsyncTask.CallBack() {
                                 @Override
                                 public void setData(final Bitmap bitmap) {
@@ -264,7 +278,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                             }else {
                                 userName.setText(username);
                             }
-
+                            text_account.setText("芽币余额： " + account );
                             break;
                         default:
                             break;
