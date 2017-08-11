@@ -79,4 +79,13 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@anim/enter01</item>
+        <item name="android:windowExitAnimation">@anim/out01</item>
+    </style>
+
 </resources>

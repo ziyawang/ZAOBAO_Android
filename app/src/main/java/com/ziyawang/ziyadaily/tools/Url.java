@@ -37,7 +37,10 @@ public class Url {
     public static final String returnType = IP + "returnType?token=%s" ;
     public static final String ShareInfo = IP + "detail/" ;
     public static final String ShareInfoDay = IP + "project/" ;
+    public static final String ShareInfoDay103 = IP + "project1/" ;
     public static final String CheckVersion = IP + "update" ;
+    public static final String Pay = IP + "app/consume?token=%s" ;
+    public static final String myBill = IP + "mybill?token=%s" ;
 
 
     //头像路径
@@ -50,7 +53,7 @@ public class Url {
     public static final String Rule = "http://files.ziyawang.com/law.html" ;
 
     //支付接口
-    public static final String PayCharge = "https://apis.ziyawang.com/zll/pay?access_token=token&token=%s" ;
+    public static final String PayCharge = IP + "pay?token=%s" ;
     public static final String RechargeType = "https://apis.ziyawang.com/zll/pay/list?access_token=token" ;
 
 

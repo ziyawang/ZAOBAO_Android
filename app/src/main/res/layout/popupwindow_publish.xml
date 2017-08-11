@@ -39,7 +39,7 @@
             android:id="@+id/info_type"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="该信息为普通资源"
+            android:text="该信息为收费资源"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -51,7 +51,6 @@
             android:id="@+id/info_title"
             android:textSize="18sp"
             android:textColor="#333"
-            android:text="无需消耗芽币可查看对方联系方式"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -66,7 +65,6 @@
 
         <!--消耗信息展示-->
         <LinearLayout
-            android:visibility="gone"
             android:paddingLeft="30dp"
             android:gravity="center_vertical"
             android:layout_marginTop="20dp"
@@ -103,7 +101,7 @@
             android:paddingLeft="30dp"
             android:gravity="center_vertical"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@id/shejian_two"
             android:id="@+id/shejian_three"
             android:layout_width="match_parent"

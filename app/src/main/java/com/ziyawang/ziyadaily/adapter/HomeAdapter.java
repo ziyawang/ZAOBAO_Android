@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,14 +50,16 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 public class HomeAdapter extends BaseAdapter {
     private Context context;
     private List<HomeEntity> list;
+    private String type ;
 
     public HomeAdapter() {
     }
 
-    public HomeAdapter(Context context, List<HomeEntity> list) {
+    public HomeAdapter(Context context, List<HomeEntity> list, String type) {
         super();
         this.context = context;
         this.list = list;
+        this.type = type ;
     }
 
     @Override
@@ -102,113 +105,53 @@ public class HomeAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        switch (list.get(position).getLabel()) {
-            case "1":
-                holder.image_type.setImageResource(R.mipmap.zhaoxiangmu);
-                break;
-            case "2":
-                holder.image_type.setImageResource(R.mipmap.zichanbao);
-                break;
-            case "3":
-                holder.image_type.setImageResource(R.mipmap.fuwu);
-                break;
-            case "4":
-                holder.image_type.setImageResource(R.mipmap.rongzi);
-                break;
-            case "5":
-                holder.image_type.setImageResource(R.mipmap.zixun);
-                break;
-            default:
-                break;
+        if (!TextUtils.isEmpty(list.get(position).getLabel())){
+            switch (list.get(position).getLabel()) {
+                case "1":
+                    holder.image_type.setImageResource(R.mipmap.zhaoxiangmu);
+                    break;
+                case "2":
+                    holder.image_type.setImageResource(R.mipmap.zichanbao);
+                    break;
+                case "3":
+                    holder.image_type.setImageResource(R.mipmap.fuwu);
+                    break;
+                case "4":
+                    holder.image_type.setImageResource(R.mipmap.rongzi);
+                    break;
+                case "5":
+                    holder.image_type.setImageResource(R.mipmap.zixun);
+                    break;
+                default:
+                    break;
+            }
         }
+
+        if ("0".equals(type)){
+            if (position != 0 && list.get(position).getCreated_at().substring(0, 10).equals(list.get(position - 1).getCreated_at().substring(0, 10))) {
+                holder.relative_time_title.setVisibility(View.GONE);
+                holder.black.setVisibility(View.VISIBLE);
+            } else {
+                holder.black.setVisibility(View.GONE);
+                holder.relative_time_title.setVisibility(View.VISIBLE);
+                String week = TimeChange.dateToWeek(list.get(position).getCreated_at().substring(0, 10));
+                holder.time_title.setText("资芽早报  " + list.get(position).getCreated_at().substring(0, 10) + "  " + week );
+            }
+        }else {
+            holder.relative_time_title.setVisibility(View.GONE);
+            holder.black.setVisibility(View.VISIBLE);
+        }
+
         holder.text_type.setText(list.get(position).getTitle());
         holder.text_time.setText(list.get(position).getCreated_at().substring(0, 10));
         holder.des.setText(list.get(position).getContent());
 
-        //获取当天你的年月日
-        //SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        //String date=sdf.format(new java.util.Date());
-        if (position != 0 && list.get(position).getCreated_at().substring(0, 10).equals(list.get(position - 1).getCreated_at().substring(0, 10))) {
-            holder.relative_time_title.setVisibility(View.GONE);
-            holder.black.setVisibility(View.VISIBLE);
-        } else {
-            holder.black.setVisibility(View.GONE);
-            holder.relative_time_title.setVisibility(View.VISIBLE);
-            String week = TimeChange.dateToWeek(list.get(position).getCreated_at().substring(0, 10));
-            holder.time_title.setText("资芽早报  " + list.get(position).getCreated_at().substring(0, 10) + "  " + week );
-        }
-//        switch (list.get(position).getStatus()) {
-//            case "0":
-//                holder.text_03.setText(R.string.unCollect);
-//                holder.text_03.setTextColor(Color.rgb(153, 153, 153));
-//                holder.image_03.setImageResource(R.mipmap.shoucang);
-//                break;
-//            case "1":
-//                holder.text_03.setText(R.string.collect);
-//                holder.text_03.setTextColor(Color.rgb(255, 77, 77));
-//                holder.image_03.setImageResource(R.mipmap.unshoucang);
-//                break;
-//            default:
-//                break;
-//        }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goDetailsDailyActivity(position);
             }
         });
-//        holder.relative_01.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final CustomDialog.Builder builder01 = new CustomDialog.Builder(context);
-//                builder01.setTitle("亲爱的用户");
-//                builder01.setMessage("您确定要联系资芽网客服?");
-//                builder01.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        goCallNumber(list.get(position).getPhoneNumber());
-//
-//                    }
-//                });
-//                builder01.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//                builder01.create().show();
-//            }
-//        });
-//        holder.relative_02.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //if (GetBenSharedPreferences.getIsLogin(context)){
-//                Intent intent = new Intent(context, DetailsDailyActivity.class);
-//                intent.putExtra("id", list.get(position).getProjectId());
-//                intent.putExtra("type", "message");
-//                context.startActivity(intent);
-//                //}else {
-//                //    goLoginActivity() ;
-//                //}
-//            }
-//        });
-//        holder.relative_03.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (GetBenSharedPreferences.getIsLogin(context)) {
-//                    loadData(position, holder.relative_03);
-//                } else {
-//                    goLoginActivity();
-//                }
-//            }
-//        });
-//        holder.relative_04.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showShare(position);
-//            }
-//        });
         holder.relative_time_title.setOnClickListener(null);
         holder.relative_mid.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,11 +162,12 @@ public class HomeAdapter extends BaseAdapter {
                 oks.disableSSOWhenAuthorize();
                 String week = TimeChange.dateToWeek(list.get(position).getCreated_at().substring(0, 10));
                 oks.setTitle("【资芽早报】资芽网旗下自媒体" +  list.get(position).getCreated_at().substring(0, 10) + "  " + week);
-                oks.setTitleUrl(Url.ShareInfoDay + list.get(position).getCreated_at().substring(0, 10));
+                oks.setTitleUrl(Url.ShareInfoDay103 + list.get(position).getCreated_at().substring(0, 10) + "/" + type );
                 oks.setImageUrl("http://images.ziyawang.com/news/ziyaPaper.png");
-                oks.setText("【资芽早报】资芽网旗下自媒体" +  list.get(position).getCreated_at().substring(0, 10) + "  " + week);
+                //oks.setText("【资芽早报】资芽网旗下自媒体" +  list.get(position).getCreated_at().substring(0, 10) + "  " + week);
+                oks.setText(list.get(position).getContent());
                 // url仅在微信（包括好友和朋友圈）中使用
-                oks.setUrl(Url.ShareInfoDay + list.get(position).getCreated_at().substring(0, 10));
+                oks.setUrl(Url.ShareInfoDay103 + list.get(position).getCreated_at().substring(0, 10) + "/" + type );
                 // 启动分享GUI
                 oks.show(context);
             }

@@ -207,19 +207,18 @@
             android:value="541f163d47b3522a00ed5e61" /> <!-- </>值来自开发者平台取得的AppKey -->
 
         <activity android:name=".activity.MyGoldAddActivity" />
-        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SearchActivity" />
 
         <!-- Ping++ SDK -->
         <activity
             android:name="com.pingplusplus.android.PaymentActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- 微信支付 -->
         <activity-alias
-            android:name=".wxapi.WXPayEntryActivity"
+            android:name="com.ziyawang.ziyadaily.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:targetActivity="com.pingplusplus.android.PaymentActivity" />
 
@@ -228,20 +227,19 @@
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
+            android:screenOrientation="behind" />
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
+            android:screenOrientation="behind" />
 
         <!-- 银联支付 -->
         <activity
             android:name="com.unionpay.uppay.PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"/>
-
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize" />
+        <activity android:name=".activity.GoldRecordActivity" />
+        <activity android:name=".activity.GoldRecord02Activity"></activity>
     </application>
 
 </manifest>

@@ -145,14 +145,14 @@ public class HomeItemFragment extends Fragment implements View.OnClickListener{
         /***********************************************SB代码******************************************/
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden){
-                sbCode();
-        }
-
-    }
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//        if (!hidden){
+//            sbCode();
+//        }
+//
+//    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -165,10 +165,10 @@ public class HomeItemFragment extends Fragment implements View.OnClickListener{
         initData() ;
         //加载数据
         loadData();
+
     }
 
     private void initData() {
-        type = (String)getArguments().get("type");
     }
 
     private void initListeners() {
@@ -185,14 +185,14 @@ public class HomeItemFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initView(View view) {
-
+        type = (String)getArguments().get("type");
         footLinearLayout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.home_foot_item , null ) ;
         ben = (TextView)footLinearLayout.findViewById(R.id.ben ) ;
         listView = (ListView) view.findViewById(R.id.listView ) ;
         listView.setDivider(null);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout ) ;
         swipeRefreshLayout.setColorSchemeResources(R.color.common_bg);
-        adapter = new HomeAdapter(getActivity() , ben_data ) ;
+        adapter = new HomeAdapter(getActivity() , ben_data , type ) ;
         listView.addFooterView(footLinearLayout);
         listView.setAdapter(adapter);
     }

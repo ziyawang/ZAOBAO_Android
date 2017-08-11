@@ -220,7 +220,8 @@ public class MyGoldAddActivity extends BenBenActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.common_text:
-                ToastUtils.shortToast(MyGoldAddActivity.this , "充值记录");
+                Intent intent = new Intent(MyGoldAddActivity.this , GoldRecordActivity.class ) ;
+                startActivity(intent);
                 break;
             case R.id.wx_relative :
                 select(wx_select ,CHANNEL_WECHAT ) ;
@@ -243,7 +244,7 @@ public class MyGoldAddActivity extends BenBenActivity implements View.OnClickLis
         //充值的金额money , 充值的渠道channel
         Log.e("benben", "渠道:" + channel + "---" + "金额：" + money) ;
         //付款
-        new PaymentTask().execute(new PaymentRequest(channel, money , ybcount ));
+        new PaymentTask().execute(new PaymentRequest(channel, money ));
 
     }
 
@@ -276,11 +277,11 @@ public class MyGoldAddActivity extends BenBenActivity implements View.OnClickLis
         @Override
         protected void onPostExecute(String data) {
             if(null == data){
-                //showMsg("请求出错", "请检查URL", "URL无法获取charge");
+                showMsg("请求出错", "请检查URL", "URL无法获取charge");
                 ToastUtils.shortToast(MyGoldAddActivity.this  , "请检查网络连接");
                 return;
             }
-            Log.d("charge", data);
+            Log.e("charge", data);
             Pingpp.createPayment(MyGoldAddActivity.this, data);
         }
 
@@ -304,9 +305,11 @@ public class MyGoldAddActivity extends BenBenActivity implements View.OnClickLis
                  * "cancel"  - user canceld
                  * "invalid" - payment plugin not installed
                  */
-                String errorMsg = data.getExtras().getString("error_msg"); // 错误信息
-                String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
-                showMsg(result, errorMsg, extraMsg);
+
+                //Log.e("niubenben" , data.getExtras().toString() ) ;
+                //String errorMsg = data.getExtras().getString("error_msg"); // 错误信息
+                //String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
+                //showMsg(result, errorMsg, extraMsg);
                 if ("success".equals(result)){
                     ToastUtils.shortToast(this , "支付成功！");
                 }else if ("fail".equals(result)){
@@ -353,21 +356,18 @@ public class MyGoldAddActivity extends BenBenActivity implements View.OnClickLis
     class PaymentRequest {
         String channel;
         int amount;
-        String ybcount  ;
 
-        public PaymentRequest(String channel, int amount , String ybcount ) {
+        public PaymentRequest(String channel, int amount  ) {
             this.channel = channel;
             this.amount = amount;
-            this.ybcount = ybcount ;
         }
     }
 
     private void select(ImageView v , String str) {
-
         wx_select.setImageResource(R.mipmap.uncheck);
         alipay_select.setImageResource(R.mipmap.uncheck);
         upacp_select.setImageResource(R.mipmap.uncheck);
-        v.setImageResource(R.mipmap.rechargeselect);
+        v.setImageResource(R.mipmap.select);
         //选择支付渠道
         channel = str ;
     }
